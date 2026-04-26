@@ -1,0 +1,802 @@
+/* Matches Page Styles */
+.matches-page {
+  --background: #000000;
+}
+
+/* Custom Header */
+.custom-header {
+  background: #000000;
+  padding-top: 8px;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.status-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+.menu-button,
+.info-button {
+  --color: white;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin: 0;
+  font-size: 24px;
+}
+
+.search-wrapper {
+  flex: 1;
+}
+
+.custom-searchbar {
+  --background: #1f2937;
+  --color: white;
+  --placeholder-color: #9ca3af;
+  --icon-color: #9ca3af;
+  --border-radius: 12px;
+  --box-shadow: none;
+  padding: 0;
+}
+
+.ticket-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.ticket-box ion-icon {
+  font-size: 24px;
+}
+
+.ticket-amount {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+/* Content */
+.matches-content {
+  --background: #000000;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+/* Date Selector */
+.date-selector {
+  display: flex;
+  align-items: center;
+  background: #1f2937;
+  margin: 8px 16px;
+  border-radius: 12px;
+  width: auto;
+}
+
+.calendar-button {
+  --color: #9ca3af;
+  margin: 0;
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+.dates-scroll {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dates-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.date-item {
+  flex: 1;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.date-item.active {
+  border-top: 2px solid #22c55e;
+  background: #111827;
+}
+
+.date-day {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.date-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #9ca3af;
+}
+
+.date-item.active .date-number {
+  color: white;
+}
+
+/* Live Header */
+.live-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  width: auto;
+}
+
+.live-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.sort-box ion-icon {
+  font-size: 20px;
+}
+
+/* Odds Header */
+.odds-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 16px;
+  width: auto;
+}
+
+.odds-labels {
+  display: flex;
+  gap: 32px;
+  margin-right: 48px;
+}
+
+.odds-labels span {
+  width: 32px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Matches List */
+.matches-list {
+  padding: 0 16px 100px 16px;
+  width: auto;
+}
+
+/* Match Card */
+.match-card-wrapper {
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.league-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  padding: 8px 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px 12px 0 0;
+}
+
+.league-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.star-icon {
+  font-size: 20px;
+  color: #9ca3af;
+}
+
+.league-flag {
+  font-size: 18px;
+}
+
+.league-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+}
+
+.league-odds {
+  display: flex;
+  gap: 16px;
+}
+
+.league-odds span {
+  width: 40px;
+  text-align: right;
+  color: #d1d5db;
+  font-size: 14px;
+}
+
+.match-card {
+  display: flex;
+  background: #1f2937;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.match-card.with-league {
+  border-radius: 0;
+}
+
+.match-card:not(.with-league) {
+  border-radius: 12px;
+}
+
+/* Time Column */
+.time-column {
+  width: 70px;
+  background: #374151;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  flex-shrink: 0;
+}
+
+.live-line {
+  width: 24px;
+  height: 2px;
+  background: #6b7280;
+  margin: 4px 0;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.live-minute {
+  font-size: 12px;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.star-icon-small {
+  font-size: 20px;
+  color: #9ca3af;
+  margin: 4px 0;
+}
+
+.match-time {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+/* Teams Column */
+.teams-column {
+  flex: 1;
+  padding: 12px 12px;
+}
+
+.team-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.team-row:last-child {
+  margin-bottom: 0;
+}
+
+.team-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;
+}
+
+.team-name {
+  font-size: 14px;
+  color: white;
+  flex: 1;
+}
+
+.team-score {
+  font-size: 16px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+.team-dash {
+  color: #9ca3af;
+  width: 20px;
+  text-align: right;
+}
+
+/* Filter Value Box */
+.filter-value-box {
+  width: 110px;
+  min-height: 80px;
+  background: transparent;
+  border: 1.5px solid #4b5563;
+  border-radius: 8px;
+  margin: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Boş çerçeve hali */
+.empty-box {
+  text-align: center;
+  padding: 12px 8px;
+  color: #6b7280;
+  font-size: 10px;
+}
+
+/* Aktif (yeşil) hali */
+.filter-value-box.active {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.filter-value-box.active .filter-values-list {
+  color: white;
+}
+
+.filter-value-box.active .filter-value-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-value-box.active .filter-value-number {
+  color: white;
+  font-weight: bold;
+}
+
+/* Filtre değerleri listesi */
+.filter-values-list {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-value-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.filter-value-label {
+  color: #9ca3af;
+}
+
+.filter-value-number {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  height: 4px;
+  margin-top: 2px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+.progress-yellow {
+  flex: 1;
+  background: #eab308;
+}
+
+.progress-red {
+  flex: 1;
+  background: #ef4444;
+}
+
+/* Live Button */
+.live-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #1f2937;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 20px;
+  margin: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: auto;
+}
+
+.live-button-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.live-badge {
+  --background: #ef4444;
+  --color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.live-button.active {
+  background: #22c55e;
+}
+
+.live-button.active .live-button-text {
+  color: white;
+}
+
+.live-button.active .live-badge {
+  --background: white;
+  --color: #ef4444;
+}
+
+.live-button:hover {
+  background: #374151;
+}
+
+.live-button.active:hover {
+  background: #16a34a;
+}
+
+/* Loading State */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 16px;
+  color: #9ca3af;
+}
+
+/* No Matches State */
+.no-matches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ============================================ */
+/* HOVER KARTI STILLERI */
+/* ============================================ */
+
+.stats-hover-container {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  cursor: pointer;
+}
+
+/* Yeşil kutucuğun kendisi hover edilebilir olmalı */
+.filter-value-box {
+  cursor: pointer;
+}
+
+.stats-hover-card {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  width: 320px;
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  border: 1px solid #374151;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+
+/* Hover durumunda kart görünür */
+.stats-hover-container:hover .stats-hover-card {
+  display: block !important;
+}
+
+/* Ok işareti */
+.stats-hover-card::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #1f2937;
+}
+
+/* Header */
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #374151;
+  margin-bottom: 12px;
+}
+
+.team-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.team-header.home {
+  color: #3b82f6;
+}
+
+.team-header.away {
+  color: #ef4444;
+}
+
+.team-logo-small {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #374151;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+.match-info {
+  text-align: center;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.match-duration {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* Stats Body */
+.stats-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.stat-label {
+  width: 85px;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.stat-bars {
+  flex: 1;
+}
+
+.stat-bar-container {
+  display: flex;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #374151;
+}
+
+.stat-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  transition: width 0.3s ease;
+  min-width: 28px;
+}
+
+.home-bar {
+  background: #3b82f6;
+  justify-content: flex-start;
+  padding-left: 4px;
+}
+
+.away-bar {
+  background: #ef4444;
+  justify-content: flex-end;
+  padding-right: 4px;
+}
+
+.stat-value {
+  font-size: 9px;
+  font-weight: bold;
+}
+
+/* Footer */
+.stats-footer {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #374151;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.legend-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.legend-color.home-color {
+  background: #3b82f6;
+}
+
+.legend-color.away-color {
+  background: #ef4444;
+}
+
+/* Responsive - Mobil */
+@media (max-width: 480px) {
+  .filter-value-box {
+    width: 90px;
+    min-height: 70px;
+  }
+  
+  .filter-value-item {
+    font-size: 8px;
+  }
+  
+  .filter-value-label,
+  .filter-value-number {
+    font-size: 8px;
+  }
+  
+  .stats-hover-card {
+    width: 280px;
+    right: -10px;
+  }
+  
+  .stat-label {
+    width: 70px;
+    font-size: 9px;
+  }
+  
+  .team-name {
+    font-size: 10px;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .stat-bar-container {
+    height: 20px;
+  }
+  
+  .stat-value {
+    font-size: 8px;
+  }
+}
+
+/* Tablet için */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .filter-value-box {
+    width: 130px;
+  }
+  
+  .filter-value-item {
+    font-size: 11px;
+  }
+  
+  .stats-hover-card {
+    width: 350px;
+    right: 0;
+  }
+  
+  .stat-label {
+    width: 90px;
+  }
+}
+
+.menu-button {
+  --color: white;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Küçük ekranlarda split-pane kapat */
+@media (max-width: 768px) {
+  ion-split-pane {
+    --side-width: 0;
+
+  }
+}

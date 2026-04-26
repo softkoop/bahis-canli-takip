@@ -1,0 +1,245 @@
+/* Stats Modal Styles */
+.stats-modal {
+  --background: #000000;
+}
+
+.stats-modal-header {
+  --background: #1f2937;
+  --color: white;
+  --border-style: none;
+  border-bottom: 1px solid #374151;
+}
+
+.stats-modal-header ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.stats-modal-content {
+  --background: #000000;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+/* Takım Başlıkları */
+.stats-modal-teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.stats-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.home-team {
+  justify-content: flex-start;
+}
+
+.away-team {
+  justify-content: flex-end;
+}
+
+.team-logo-large {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.team-name-large {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.team-score-large {
+  font-size: 24px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+.stats-vs {
+  font-size: 14px;
+  font-weight: bold;
+  color: #9ca3af;
+  padding: 0 16px;
+}
+
+/* Maç Bilgisi */
+.stats-match-info {
+  text-align: center;
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.match-duration {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+.match-half {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* İstatistik Listesi */
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stats-list-item {
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.stats-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Değerler (sayılar) */
+.stats-values {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.home-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.away-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ef4444;
+}
+
+/* Progress Bar - TOPLAM 100% */
+.stats-bar-container {
+  display: flex;
+  height: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #374151;
+  width: 100%;
+}
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  transition: width 0.3s ease;
+  min-width: 40px;
+}
+
+.home-stats-bar {
+  background: #3b82f6;
+}
+
+.away-stats-bar {
+  background: #ef4444;
+}
+
+.stats-percent {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Legend */
+.stats-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.home-legend {
+  background: #3b82f6;
+}
+
+.away-legend {
+  background: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .team-logo-large {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+  
+  .team-name-large {
+    font-size: 11px;
+  }
+  
+  .team-score-large {
+    font-size: 18px;
+  }
+  
+  .stats-vs {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+  
+  .stats-bar {
+    min-width: 30px;
+  }
+  
+  .stats-percent {
+    font-size: 9px;
+  }
+  
+  .home-value,
+  .away-value {
+    font-size: 12px;
+  }
+}

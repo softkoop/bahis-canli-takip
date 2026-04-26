@@ -1,0 +1,26 @@
+{
+  "name": "iddiaa",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo dev",
+    "dev:api": "turbo dev --filter=api",
+    "dev:mobile": "turbo dev --filter=mobile",
+    "build": "turbo build",
+    "build:api": "turbo build --filter=api",
+    "build:mobile": "turbo build --filter=mobile",
+    "clean": "turbo clean && rm -rf node_modules",
+    "android": "cd apps/mobile && npx cap sync android && npx cap open android"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.32.1",
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "turbo": "^2.9.6",
+    "typescript": "^6.0.2"
+  }
+}

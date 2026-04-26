@@ -1,0 +1,1808 @@
+[
+  {
+    "id": 1396800,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Kolos Kovalivka",
+      "shortName": "Kolos Kovalivka",
+      "logo": "3627"
+    },
+    "awayTeam": {
+      "fullName": "LNZ Cherkasy",
+      "shortName": "LNZ Cherkasy",
+      "logo": "17161"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Premier League",
+    "flag": "Ukraine",
+    "score": {
+      "home": 1,
+      "away": 0
+    }
+  },
+  {
+    "id": 1398234,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Pacos Ferreira",
+      "shortName": "Pacos Ferreira",
+      "logo": "234"
+    },
+    "awayTeam": {
+      "fullName": "Chaves",
+      "shortName": "Chaves",
+      "logo": "223"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Segunda Liga",
+    "flag": "Portugal",
+    "score": {
+      "home": 4,
+      "away": 3
+    },
+    "stats": {
+      "home": {
+        "possession": 0,
+        "shots": 0,
+        "accurateShots": 0,
+        "dangerousAttacks": 0,
+        "corners": 0
+      },
+      "away": {
+        "possession": 0,
+        "shots": 0,
+        "accurateShots": 0,
+        "dangerousAttacks": 0,
+        "corners": 0
+      },
+      "matchDuration": 0,
+      "currentHalf": "first"
+    }
+  },
+  {
+    "id": 1410401,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Wisła Płock II",
+      "shortName": "Wisła Płock II",
+      "logo": "23046"
+    },
+    "awayTeam": {
+      "fullName": "Wikielec",
+      "shortName": "Wikielec",
+      "logo": "16243"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "III Liga - Group 1",
+    "flag": "Poland",
+    "score": {
+      "home": 3,
+      "away": 1
+    }
+  },
+  {
+    "id": 1410999,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Zagłębie Lubin II",
+      "shortName": "Zagłębie Lubin II",
+      "logo": "6963"
+    },
+    "awayTeam": {
+      "fullName": "Górnik Zabrze II",
+      "shortName": "Górnik Zabrze II",
+      "logo": "12776"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "III Liga - Group 3",
+    "flag": "Poland",
+    "score": {
+      "home": 0,
+      "away": 5
+    }
+  },
+  {
+    "id": 1411003,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Sparta Katowice",
+      "shortName": "Sparta Katowice",
+      "logo": "22910"
+    },
+    "awayTeam": {
+      "fullName": "Karkonosze Jelenia Góra",
+      "shortName": "Karkonosze Jelenia Góra",
+      "logo": "17402"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "III Liga - Group 3",
+    "flag": "Poland",
+    "score": {
+      "home": 3,
+      "away": 1
+    }
+  },
+  {
+    "id": 1411302,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Wisła Kraków II",
+      "shortName": "Wisła Kraków II",
+      "logo": "24324"
+    },
+    "awayTeam": {
+      "fullName": "Świdniczanka Świdnik",
+      "shortName": "Świdniczanka Świdnik",
+      "logo": "21661"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "III Liga - Group 4",
+    "flag": "Poland",
+    "score": {
+      "home": 1,
+      "away": 0
+    }
+  },
+  {
+    "id": 1411303,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Cracovia Kraków II",
+      "shortName": "Cracovia Kraków II",
+      "logo": "16265"
+    },
+    "awayTeam": {
+      "fullName": "Sokół Kolb.",
+      "shortName": "Sokół Kolb.",
+      "logo": "26185"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "III Liga - Group 4",
+    "flag": "Poland",
+    "score": {
+      "home": 1,
+      "away": 2
+    }
+  },
+  {
+    "id": 1437636,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Sunderland U18",
+      "shortName": "Sunderland U18",
+      "logo": "15386"
+    },
+    "awayTeam": {
+      "fullName": "Leeds United U18",
+      "shortName": "Leeds United U18",
+      "logo": "15379"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U18 Premier League - North",
+    "flag": "England",
+    "score": {
+      "home": 5,
+      "away": 1
+    }
+  },
+  {
+    "id": 1437638,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Burnley U18",
+      "shortName": "Burnley U18",
+      "logo": "15376"
+    },
+    "awayTeam": {
+      "fullName": "Stoke City U18",
+      "shortName": "Stoke City U18",
+      "logo": "15385"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U18 Premier League - North",
+    "flag": "England",
+    "score": {
+      "home": 3,
+      "away": 2
+    }
+  },
+  {
+    "id": 1437834,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Fulham U18",
+      "shortName": "Fulham U18",
+      "logo": "15393"
+    },
+    "awayTeam": {
+      "fullName": "Chelsea U18",
+      "shortName": "Chelsea U18",
+      "logo": "15391"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U18 Premier League - South",
+    "flag": "England",
+    "score": {
+      "home": 1,
+      "away": 5
+    }
+  },
+  {
+    "id": 1437835,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Birmingham City U18",
+      "shortName": "Birmingham City U18",
+      "logo": "17425"
+    },
+    "awayTeam": {
+      "fullName": "Aston Villa U18",
+      "shortName": "Aston Villa U18",
+      "logo": "15389"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U18 Premier League - South",
+    "flag": "England",
+    "score": {
+      "home": 1,
+      "away": 5
+    }
+  },
+  {
+    "id": 1437836,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Reading U18",
+      "shortName": "Reading U18",
+      "logo": "15396"
+    },
+    "awayTeam": {
+      "fullName": "Southampton U18",
+      "shortName": "Southampton U18",
+      "logo": "15397"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U18 Premier League - South",
+    "flag": "England",
+    "score": {
+      "home": 1,
+      "away": 3
+    }
+  },
+  {
+    "id": 1461596,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Real Unión de Tenerife",
+      "shortName": "Real Unión de Tenerife",
+      "logo": "20375"
+    },
+    "awayTeam": {
+      "fullName": "Las Palmas III",
+      "shortName": "Las Palmas III",
+      "logo": "9798"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Tercera División RFEF - Group 12",
+    "flag": "Spain",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1468029,
+    "time": "09:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Benevento U19",
+      "shortName": "Benevento U19",
+      "logo": "15655"
+    },
+    "awayTeam": {
+      "fullName": "Pisa U19",
+      "shortName": "Pisa U19",
+      "logo": "15674"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Campionato Primavera - 2",
+    "flag": "Italy",
+    "score": {
+      "home": 1,
+      "away": 0
+    }
+  },
+  {
+    "id": 1469703,
+    "time": "09:35",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Sydney",
+      "shortName": "Sydney",
+      "logo": "943"
+    },
+    "awayTeam": {
+      "fullName": "Perth Glory",
+      "shortName": "Perth Glory",
+      "logo": "940"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "A-League",
+    "flag": "Australia",
+    "score": {
+      "home": 0,
+      "away": 0
+    },
+    "stats": {
+      "home": {
+        "possession": 63,
+        "shots": 15,
+        "accurateShots": 4,
+        "dangerousAttacks": 18,
+        "corners": 4
+      },
+      "away": {
+        "possession": 37,
+        "shots": 8,
+        "accurateShots": 2,
+        "dangerousAttacks": 5,
+        "corners": 1
+      },
+      "matchDuration": 0,
+      "currentHalf": "first"
+    }
+  },
+  {
+    "id": 1470784,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Kariobangi Sharks",
+      "shortName": "Kariobangi Sharks",
+      "logo": "2468"
+    },
+    "awayTeam": {
+      "fullName": "Mara Sugar",
+      "shortName": "Mara Sugar",
+      "logo": "19483"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "FKF Premier League",
+    "flag": "Kenya",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1481946,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Górnik Zabrze U19",
+      "shortName": "Górnik Zabrze U19",
+      "logo": "16391"
+    },
+    "awayTeam": {
+      "fullName": "Legia Warszawa U19",
+      "shortName": "Legia Warszawa U19",
+      "logo": "7987"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Central Youth League",
+    "flag": "Poland",
+    "score": {
+      "home": 2,
+      "away": 2
+    }
+  },
+  {
+    "id": 1481949,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Polonia Warszawa U19",
+      "shortName": "Polonia Warszawa U19",
+      "logo": "20593"
+    },
+    "awayTeam": {
+      "fullName": "Jagiellonia U19",
+      "shortName": "Jagiellonia U19",
+      "logo": "20590"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Central Youth League",
+    "flag": "Poland",
+    "score": {
+      "home": 2,
+      "away": 1
+    }
+  },
+  {
+    "id": 1490665,
+    "time": "09:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Pardubice U19",
+      "shortName": "Pardubice U19",
+      "logo": "14836"
+    },
+    "awayTeam": {
+      "fullName": "České Budějovice U19",
+      "shortName": "České Budějovice U19",
+      "logo": "14841"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "1. Liga U19",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 2,
+      "away": 0
+    }
+  },
+  {
+    "id": 1490666,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Hradec Králové U19",
+      "shortName": "Hradec Králové U19",
+      "logo": "14831"
+    },
+    "awayTeam": {
+      "fullName": "Baník Ostrava U19",
+      "shortName": "Baník Ostrava U19",
+      "logo": "14830"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "1. Liga U19",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 1,
+      "away": 1
+    }
+  },
+  {
+    "id": 1496034,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Træff",
+      "shortName": "Træff",
+      "logo": "7040"
+    },
+    "awayTeam": {
+      "fullName": "Sotra",
+      "shortName": "Sotra",
+      "logo": "7028"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "2. Division - Group 1",
+    "flag": "Norway",
+    "score": {
+      "home": 0,
+      "away": 2
+    }
+  },
+  {
+    "id": 1506805,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Vitoria Guimaraes U19",
+      "shortName": "Vitoria Guimaraes U19",
+      "logo": "22520"
+    },
+    "awayTeam": {
+      "fullName": "Sporting Braga U19",
+      "shortName": "Sporting Braga U19",
+      "logo": "22375"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Júniores U19",
+    "flag": "Portugal",
+    "score": {
+      "home": 2,
+      "away": 4
+    }
+  },
+  {
+    "id": 1506843,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Famalicão U19",
+      "shortName": "Famalicão U19",
+      "logo": "22394"
+    },
+    "awayTeam": {
+      "fullName": "Sporting CP U19",
+      "shortName": "Sporting CP U19",
+      "logo": "7997"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Júniores U19",
+    "flag": "Portugal",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1518960,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Persipura Jayapura",
+      "shortName": "Persipura Jayapura",
+      "logo": "2440"
+    },
+    "awayTeam": {
+      "fullName": "PSIS Semarang",
+      "shortName": "PSIS Semarang",
+      "logo": "2451"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Liga 2",
+    "flag": "Indonesia",
+    "score": {
+      "home": 3,
+      "away": 1
+    }
+  },
+  {
+    "id": 1519530,
+    "time": "09:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Nõmme Kalju II",
+      "shortName": "Nõmme Kalju II",
+      "logo": "13826"
+    },
+    "awayTeam": {
+      "fullName": "Maardu",
+      "shortName": "Maardu",
+      "logo": "3527"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Esiliiga A",
+    "flag": "Estonia",
+    "score": {
+      "home": 3,
+      "away": 2
+    }
+  },
+  {
+    "id": 1521770,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Chayka",
+      "shortName": "Chayka",
+      "logo": "6483"
+    },
+    "awayTeam": {
+      "fullName": "Kolos Kovalivka II",
+      "shortName": "Kolos Kovalivka II",
+      "logo": "24585"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Druha Liga",
+    "flag": "Ukraine",
+    "score": {
+      "home": 1,
+      "away": 1
+    }
+  },
+  {
+    "id": 1521775,
+    "time": "09:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Oleksandria II",
+      "shortName": "Oleksandria II",
+      "logo": "24588"
+    },
+    "awayTeam": {
+      "fullName": "Lokomotiv Kyiv",
+      "shortName": "Lokomotiv Kyiv",
+      "logo": "21954"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Druha Liga",
+    "flag": "Ukraine",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1527291,
+    "time": "09:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Adelaide Cobras",
+      "shortName": "Adelaide Cobras",
+      "logo": "16763"
+    },
+    "awayTeam": {
+      "fullName": "Adelaide Blue Eagles",
+      "shortName": "Adelaide Blue Eagles",
+      "logo": "3784"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "South Australia State League 1",
+    "flag": "Australia",
+    "score": {
+      "home": 2,
+      "away": 3
+    }
+  },
+  {
+    "id": 1527933,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Irtysh",
+      "shortName": "Irtysh",
+      "logo": "4565"
+    },
+    "awayTeam": {
+      "fullName": "Zhetysu",
+      "shortName": "Zhetysu",
+      "logo": "4560"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Premier League",
+    "flag": "Kazakhstan",
+    "score": {
+      "home": 1,
+      "away": 2
+    }
+  },
+  {
+    "id": 1528411,
+    "time": "09:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Brothers Union",
+      "shortName": "Brothers Union",
+      "logo": "5013"
+    },
+    "awayTeam": {
+      "fullName": "PWD Sports Club",
+      "shortName": "PWD Sports Club",
+      "logo": "26882"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Premier League",
+    "flag": "Bangladesh",
+    "score": {
+      "home": 1,
+      "away": 2
+    }
+  },
+  {
+    "id": 1536536,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Shumbrat",
+      "shortName": "Shumbrat",
+      "logo": "26148"
+    },
+    "awayTeam": {
+      "fullName": "SKA Khabarovsk II",
+      "shortName": "SKA Khabarovsk II",
+      "logo": "17721"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Second League - Group 3",
+    "flag": "Russia",
+    "score": {
+      "home": 3,
+      "away": 2
+    }
+  },
+  {
+    "id": 1536537,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Avangard Kursk",
+      "shortName": "Avangard Kursk",
+      "logo": "2009"
+    },
+    "awayTeam": {
+      "fullName": "Arsenal Tula II",
+      "shortName": "Arsenal Tula II",
+      "logo": "17720"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Second League - Group 3",
+    "flag": "Russia",
+    "score": {
+      "home": 1,
+      "away": 0
+    }
+  },
+  {
+    "id": 1540655,
+    "time": "10:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Kitchee",
+      "shortName": "Kitchee",
+      "logo": "4453"
+    },
+    "awayTeam": {
+      "fullName": "Warriors",
+      "shortName": "Warriors",
+      "logo": "4207"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Premier League",
+    "flag": "Hong-Kong",
+    "score": {
+      "home": 1,
+      "away": 4
+    }
+  },
+  {
+    "id": 1400230,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "FC Orenburg",
+      "shortName": "FC Orenburg",
+      "logo": "1080"
+    },
+    "awayTeam": {
+      "fullName": "Lokomotiv",
+      "shortName": "Lokomotiv",
+      "logo": "597"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Premier League",
+    "flag": "Russia",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1403807,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Arema FC",
+      "shortName": "Arema FC",
+      "logo": "2438"
+    },
+    "awayTeam": {
+      "fullName": "Persis Solo",
+      "shortName": "Persis Solo",
+      "logo": "4243"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Liga 1",
+    "flag": "Indonesia",
+    "score": {
+      "home": 2,
+      "away": 0
+    }
+  },
+  {
+    "id": 1404620,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Juventus U20",
+      "shortName": "Juventus U20",
+      "logo": "24744"
+    },
+    "awayTeam": {
+      "fullName": "Fiorentina U20",
+      "shortName": "Fiorentina U20",
+      "logo": "24731"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Campionato Primavera - 1",
+    "flag": "Italy",
+    "score": {
+      "home": 1,
+      "away": 2
+    }
+  },
+  {
+    "id": 1416394,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Kryvbas 2020 U19",
+      "shortName": "Kryvbas 2020 U19",
+      "logo": "23076"
+    },
+    "awayTeam": {
+      "fullName": "Rukh Vynnyky U19",
+      "shortName": "Rukh Vynnyky U19",
+      "logo": "20240"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U19 League",
+    "flag": "Ukraine",
+    "score": {
+      "home": 0,
+      "away": 3
+    }
+  },
+  {
+    "id": 1468845,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Udinese U19",
+      "shortName": "Udinese U19",
+      "logo": "15684"
+    },
+    "awayTeam": {
+      "fullName": "Pro Vercelli U19",
+      "shortName": "Pro Vercelli U19",
+      "logo": "24358"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Campionato Primavera - 2",
+    "flag": "Italy",
+    "score": {
+      "home": 4,
+      "away": 0
+    }
+  },
+  {
+    "id": 1468847,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Sampdoria U19",
+      "shortName": "Sampdoria U19",
+      "logo": "15680"
+    },
+    "awayTeam": {
+      "fullName": "Padova U19",
+      "shortName": "Padova U19",
+      "logo": "19856"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Campionato Primavera - 2",
+    "flag": "Italy",
+    "score": {
+      "home": 2,
+      "away": 1
+    }
+  },
+  {
+    "id": 1481950,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Resovia U19",
+      "shortName": "Resovia U19",
+      "logo": "26375"
+    },
+    "awayTeam": {
+      "fullName": "Stal Rzeszów U19",
+      "shortName": "Stal Rzeszów U19",
+      "logo": "24519"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Central Youth League",
+    "flag": "Poland",
+    "score": {
+      "home": 1,
+      "away": 1
+    }
+  },
+  {
+    "id": 1487550,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Sparta Brno",
+      "shortName": "Sparta Brno",
+      "logo": "20825"
+    },
+    "awayTeam": {
+      "fullName": "Dálnice Speřice",
+      "shortName": "Dálnice Speřice",
+      "logo": "19424"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "4. liga - Divizie D",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 0,
+      "away": 0
+    }
+  },
+  {
+    "id": 1489538,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Velké Hamry",
+      "shortName": "Velké Hamry",
+      "logo": "7372"
+    },
+    "awayTeam": {
+      "fullName": "Baník Souš",
+      "shortName": "Baník Souš",
+      "logo": "7271"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "3. liga - CFL B",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 0,
+      "away": 4
+    }
+  },
+  {
+    "id": 1489805,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Komárov",
+      "shortName": "Komárov",
+      "logo": "7310"
+    },
+    "awayTeam": {
+      "fullName": "Povltava FA",
+      "shortName": "Povltava FA",
+      "logo": "14005"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "4. liga - Divizie A",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 0,
+      "away": 0
+    }
+  },
+  {
+    "id": 1489811,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "TJ Přeštice",
+      "shortName": "TJ Přeštice",
+      "logo": "24197"
+    },
+    "awayTeam": {
+      "fullName": "Slavoj Český Krumlov",
+      "shortName": "Slavoj Český Krumlov",
+      "logo": "19432"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "4. liga - Divizie A",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 0,
+      "away": 0
+    }
+  },
+  {
+    "id": 1489926,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Hlinsko",
+      "shortName": "Hlinsko",
+      "logo": "7295"
+    },
+    "awayTeam": {
+      "fullName": "Dobrovice",
+      "shortName": "Dobrovice",
+      "logo": "14657"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "4. liga - Divizie C",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 0,
+      "away": 0
+    }
+  },
+  {
+    "id": 1490051,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Ústí nad Labem II",
+      "shortName": "Ústí nad Labem II",
+      "logo": "24194"
+    },
+    "awayTeam": {
+      "fullName": "Karlovy Vary",
+      "shortName": "Karlovy Vary",
+      "logo": "7306"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "4. liga - Divizie B",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 0,
+      "away": 0
+    }
+  },
+  {
+    "id": 1490668,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Mladá Boleslav U19",
+      "shortName": "Mladá Boleslav U19",
+      "logo": "14834"
+    },
+    "awayTeam": {
+      "fullName": "Viktoria Plzeň U19",
+      "shortName": "Viktoria Plzeň U19",
+      "logo": "7970"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "1. Liga U19",
+    "flag": "Czech-Republic",
+    "score": {
+      "home": 1,
+      "away": 1
+    }
+  },
+  {
+    "id": 1518130,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Bắc Ninh",
+      "shortName": "Bắc Ninh",
+      "logo": "26601"
+    },
+    "awayTeam": {
+      "fullName": "Dong Thap",
+      "shortName": "Dong Thap",
+      "logo": "9164"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "V.League 2",
+    "flag": "Vietnam",
+    "score": {
+      "home": 1,
+      "away": 0
+    }
+  },
+  {
+    "id": 1518400,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Hoffenheim U19",
+      "shortName": "Hoffenheim U19",
+      "logo": "7955"
+    },
+    "awayTeam": {
+      "fullName": "Bayer Leverkusen U19",
+      "shortName": "Bayer Leverkusen U19",
+      "logo": "7886"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U19 Bundesliga",
+    "flag": "Germany",
+    "score": {
+      "home": 2,
+      "away": 1
+    }
+  },
+  {
+    "id": 1518409,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Borussia M'bach U19",
+      "shortName": "Borussia M'bach U19",
+      "logo": "10249"
+    },
+    "awayTeam": {
+      "fullName": "Bayern München U19",
+      "shortName": "Bayern München U19",
+      "logo": "7887"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "U19 Bundesliga",
+    "flag": "Germany",
+    "score": {
+      "home": 2,
+      "away": 2
+    }
+  },
+  {
+    "id": 1518958,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Bekasi City",
+      "shortName": "Bekasi City",
+      "logo": "11133"
+    },
+    "awayTeam": {
+      "fullName": "Adhyaksa",
+      "shortName": "Adhyaksa",
+      "logo": "24993"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Liga 2",
+    "flag": "Indonesia",
+    "score": {
+      "home": 3,
+      "away": 1
+    }
+  },
+  {
+    "id": 1518959,
+    "time": "08:30",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Persela Lamongan",
+      "shortName": "Persela Lamongan",
+      "logo": "2450"
+    },
+    "awayTeam": {
+      "fullName": "Persipal",
+      "shortName": "Persipal",
+      "logo": "15830"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Liga 2",
+    "flag": "Indonesia",
+    "score": {
+      "home": 7,
+      "away": 1
+    }
+  },
+  {
+    "id": 1527172,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Dianella White Eagle",
+      "shortName": "Dianella White Eagle",
+      "logo": "23530"
+    },
+    "awayTeam": {
+      "fullName": "Perth RedStar",
+      "shortName": "Perth RedStar",
+      "logo": "18732"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Western Australia NPL",
+    "flag": "Australia",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1533987,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Chindia Targoviste",
+      "shortName": "Chindia Targoviste",
+      "logo": "2586"
+    },
+    "awayTeam": {
+      "fullName": "Sepsi OSK Sfantu Gheorghe",
+      "shortName": "Sepsi OSK Sfantu Gheorghe",
+      "logo": "2585"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Liga II",
+    "flag": "Romania",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1534010,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Ružomberok W",
+      "shortName": "Ružomberok W",
+      "logo": "16873"
+    },
+    "awayTeam": {
+      "fullName": "Trenčín W",
+      "shortName": "Trenčín W",
+      "logo": "15976"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "I Liga - Women",
+    "flag": "Slovakia",
+    "score": {
+      "home": 4,
+      "away": 2
+    }
+  },
+  {
+    "id": 1535452,
+    "time": "09:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Quinns FC",
+      "shortName": "Quinns FC",
+      "logo": "27636"
+    },
+    "awayTeam": {
+      "fullName": "Joondalup City",
+      "shortName": "Joondalup City",
+      "logo": "25701"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Western Australia State League 1",
+    "flag": "Australia",
+    "score": {
+      "home": 0,
+      "away": 1
+    }
+  },
+  {
+    "id": 1540755,
+    "time": "08:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "LDF",
+      "shortName": "LDF",
+      "logo": "20977"
+    },
+    "awayTeam": {
+      "fullName": "Lioli",
+      "shortName": "Lioli",
+      "logo": "20982"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Premier League",
+    "flag": "Lesotho",
+    "score": {
+      "home": 1,
+      "away": 1
+    }
+  },
+  {
+    "id": 1517508,
+    "time": "09:15",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "St George City FA",
+      "shortName": "St George City FA",
+      "logo": "16778"
+    },
+    "awayTeam": {
+      "fullName": "Marconi Stallions",
+      "shortName": "Marconi Stallions",
+      "logo": "3768"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "New South Wales NPL",
+    "flag": "Australia",
+    "score": {
+      "home": 1,
+      "away": 2
+    }
+  },
+  {
+    "id": 1535447,
+    "time": "07:00",
+    "date": "2026-04-18",
+    "homeTeam": {
+      "fullName": "Floreat Athena",
+      "shortName": "Floreat Athena",
+      "logo": "3817"
+    },
+    "awayTeam": {
+      "fullName": "Murdoch Melville",
+      "shortName": "Murdoch Melville",
+      "logo": "23532"
+    },
+    "odds": {
+      "home": 0,
+      "draw": 0,
+      "away": 0
+    },
+    "confidence": null,
+    "betType": null,
+    "betOdd": null,
+    "isLive": false,
+    "league": "Western Australia State League 1",
+    "flag": "Australia",
+    "score": {
+      "home": 2,
+      "away": 1
+    }
+  }
+]

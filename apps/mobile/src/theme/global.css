@@ -1,0 +1,1666 @@
+/* ============================================ */
+/* GLOBAL STILLER - Futbol Bahis Uygulamasi */
+/* ============================================ */
+
+/* -------------------- */
+/* TEMEL VE GENEL STILLER */
+/* -------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* -------------------- */
+/* IONIC COMPONENT OVERRIDE'LARI */
+/* -------------------- */
+
+ion-menu-button {
+  --color: white !important;
+  --background: transparent !important;
+}
+
+ion-menu-button::part(icon) {
+  color: white !important;
+}
+
+ion-menu-button::part(native) {
+  background: transparent !important;
+}
+
+ion-toolbar ion-button,
+ion-toolbar ion-menu-button {
+  --background: transparent !important;
+  --color: white !important;
+}
+
+/* -------------------- */
+/* LOGIN SAYFASI STILLERI */
+/* -------------------- */
+
+.login-page {
+  --background: #000000;
+}
+
+.login-content {
+  --background: #000000;
+}
+
+.login-container {
+  height: 100%;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+}
+
+.login-card {
+  background: #1f2937;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  margin: 16px;
+}
+
+.login-logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.login-logo-text {
+  font-size: 48px;
+}
+
+.login-title {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.login-input-item {
+  --background: #374151;
+  --border-radius: 12px;
+  margin-bottom: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --color: white;
+  --min-height: 70px;
+}
+
+.login-input-label {
+  --color: #9ca3af !important;
+  --color-focused: #22c55e !important;
+  font-size: 14px !important;
+  margin-bottom: 4px !important;
+  transform: translateY(0) !important;
+}
+
+.login-input-icon {
+  color: #22c55e;
+  font-size: 20px;
+}
+
+
+/* Input alanı */
+.login-input {
+  --color: white !important;
+  --placeholder-color: #6b7280 !important;
+  --padding-top: 8px !important;
+  --padding-bottom: 8px !important;
+  font-size: 16px !important;
+}
+
+/* Input focus durumunda label rengi */
+.login-input-item.item-has-focus .login-input-label {
+  color: #22c55e !important;
+}
+
+/* Input doluysa label yukarıda kalır */
+.login-input-item.item-has-value .login-input-label {
+  transform: translateY(0) !important;
+}
+
+.login-error {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+  color: #ef4444 !important;
+}
+
+.login-button {
+  --background: #22c55e;
+  --background-hover: #16a34a;
+  --border-radius: 12px;
+  --color: white;
+  font-weight: 600;
+  margin-top: 24px;
+  height: 48px;
+}
+
+.login-button:disabled {
+  --background: #4b5563;
+  opacity: 0.6;
+}
+
+.login-demo {
+  display: block;
+  text-align: center;
+  margin-top: 24px;
+  color: #6b7280 !important;
+  font-size: 12px;
+}
+
+/* -------------------- */
+/* MATCHES/HOME SAYFASI STILLERI */
+/* -------------------- */
+
+.matches-page {
+  --background: #000000;
+}
+
+.custom-header {
+  background: #000000;
+  padding-top: 8px;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.status-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+.menu-button,
+.info-button {
+  --color: white;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin: 0;
+  font-size: 24px;
+}
+
+.search-wrapper {
+  flex: 1;
+}
+
+.custom-searchbar {
+  --background: #1f2937;
+  --color: white;
+  --placeholder-color: #9ca3af;
+  --icon-color: #9ca3af;
+  --border-radius: 12px;
+  --box-shadow: none;
+  padding: 0;
+}
+
+.ticket-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.ticket-box ion-icon {
+  font-size: 24px;
+}
+
+.ticket-amount {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.matches-content {
+  --background: #000000;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+/* Date Selector */
+.date-selector {
+  display: flex;
+  align-items: center;
+  background: #1f2937;
+  margin: 8px 16px;
+  border-radius: 12px;
+  width: auto;
+}
+
+.calendar-button {
+  --color: #9ca3af;
+  margin: 0;
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+.dates-scroll {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dates-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.date-item {
+  flex: 1;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 60px;
+}
+
+.date-item.active {
+  border-top: 2px solid #22c55e;
+  background: #111827;
+}
+
+.date-day {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.date-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #9ca3af;
+}
+
+.date-item.active .date-number {
+  color: white;
+}
+
+/* Live Button */
+.live-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #1f2937;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 20px;
+  margin: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: auto;
+}
+
+.live-button-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.live-badge {
+  --background: #ef4444;
+  --color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.live-button.active {
+  background: #22c55e;
+}
+
+.live-button.active .live-button-text {
+  color: white;
+}
+
+.live-button.active .live-badge {
+  --background: white;
+  --color: #ef4444;
+}
+
+.live-button:hover {
+  background: #374151;
+}
+
+.live-button.active:hover {
+  background: #16a34a;
+}
+
+/* Match Cards */
+.matches-list {
+  padding: 0 16px 100px 16px;
+  width: auto;
+}
+
+.match-card-wrapper {
+  margin-bottom: 8px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.league-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  padding: 4px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 12px 12px 0 0;
+}
+
+.league-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.star-icon {
+  font-size: 20px;
+  color: #9ca3af;
+}
+
+.league-flag {
+  font-size: 18px;
+}
+
+.league-name {
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+}
+
+.league-odds {
+  display: flex;
+  gap: 16px;
+}
+
+.league-odds span {
+  width: 40px;
+  text-align: right;
+  color: #d1d5db;
+  font-size: 12px;
+}
+
+.match-card {
+  display: flex;
+  background: #1f2937;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.match-card.with-league {
+  border-radius: 0;
+}
+
+.match-card:not(.with-league) {
+  border-radius: 12px;
+}
+
+/* Time Column */
+.time-column {
+  width: 55px;
+  background: #374151;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.live-minute {
+  font-size: 11px;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.star-icon-small {
+  font-size: 16px;
+  color: #9ca3af;
+  margin: 4px 0;
+}
+
+.match-time {
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+/* Teams Column */
+.teams-column {
+  flex: 1;
+  padding: 8px 8px;
+}
+
+.team-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.team-row:last-child {
+  margin-bottom: 0;
+}
+
+.team-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  flex-shrink: 0;
+}
+
+.team-name {
+  font-size: 14px;
+  color: white;
+  flex: 1;
+}
+
+.team-score {
+  font-size: 16px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* Filter Value Box */
+.filter-value-box {
+  width: 110px;
+  min-height: 80px;
+  background: transparent;
+  border: 1.5px solid #4b5563;
+  border-radius: 8px;
+  margin: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.empty-box {
+  text-align: center;
+  padding: 12px 8px;
+  color: #6b7280;
+  font-size: 10px;
+}
+
+.filter-value-box.active {
+  background: #22c55e;
+  border-color: #22c55e;
+}
+
+.filter-value-box.active .filter-values-list {
+  color: white;
+}
+
+.filter-value-box.active .filter-value-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.filter-value-box.active .filter-value-number {
+  color: white;
+  font-weight: bold;
+}
+
+.filter-values-list {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-value-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.filter-value-label {
+  color: #9ca3af;
+}
+
+.filter-value-number {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  height: 4px;
+  margin-top: 2px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+}
+
+.progress-yellow {
+  flex: 1;
+  background: #eab308;
+}
+
+.progress-red {
+  flex: 1;
+  background: #ef4444;
+}
+
+/* Loading & No Matches */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  gap: 16px;
+  color: #9ca3af;
+}
+
+.no-matches {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* -------------------- */
+/* STATS SAYFASI STILLERI */
+/* -------------------- */
+
+.stats-page {
+  --background: #000000;
+}
+
+.stats-header {
+  --background: #000000;
+  --color: white;
+  --border-style: none;
+  border-bottom: 1px solid #1f2937;
+}
+
+.stats-header ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.stats-content {
+  --background: #000000;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+}
+
+.stats-card {
+  background: #1f2937;
+  border-radius: 12px;
+  margin: 0 16px 12px 16px;
+  box-shadow: none;
+  width: auto;
+}
+
+.stats-card ion-card-content {
+  padding: 16px;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: white;
+}
+
+.filter-title ion-icon {
+  font-size: 20px;
+  color: #22c55e;
+}
+
+.filter-title ion-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+/* IonRange Styles */
+.filter-range {
+  --knob-background: #22c55e;
+  --knob-size: 22px;
+  --bar-height: 8px;
+  --bar-background: #374151;
+  --bar-background-active: #22c55e;
+  padding: 12px 0;
+}
+
+.filter-range::part(track) {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.filter-range::part(track-active) {
+  background: #22c55e;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.filter-range::part(knob) {
+  width: 22px;
+  height: 22px;
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+
+.range-min,
+.range-max {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  background: #1f2937;
+  padding: 4px 12px;
+  border-radius: 20px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.current-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: #2d3748;
+  border-radius: 12px;
+  border-left: 3px solid #22c55e;
+}
+
+.current-value-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.current-value-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #22c55e;
+  background: #1f2937;
+  padding: 4px 16px;
+  border-radius: 24px;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* Half Segment */
+.half-segment {
+  --background: #374151;
+  --indicator-color: #22c55e;
+  border-radius: 8px;
+}
+
+.half-segment ion-segment-button {
+  --color: #9ca3af;
+  --color-checked: white;
+  --indicator-color: #22c55e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Sound Options */
+.sound-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.sound-chip {
+  --background: #374151;
+  --color: #9ca3af;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 24px;
+}
+
+.sound-chip[color="success"] {
+  --background: #22c55e;
+  --color: white;
+}
+
+.sound-chip[color="danger"] {
+  --background: #ef4444;
+  --color: white;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 32px 16px;
+  margin: 0;
+}
+
+.reset-button,
+.apply-button {
+  --border-radius: 12px;
+  margin: 0;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.reset-button {
+  --border-color: #4b5563;
+  --color: #9ca3af;
+}
+
+.apply-button {
+  --background: #22c55e;
+  --background-hover: #16a34a;
+  --color: white;
+}
+
+/* -------------------- */
+/* SETTINGS SAYFASI STILLERI */
+/* -------------------- */
+
+.settings-page {
+  --background: #000000;
+}
+
+.settings-header {
+  --background: #000000;
+  --color: white;
+  --border-style: none;
+  border-bottom: 1px solid #1f2937;
+}
+
+.settings-header ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.settings-content {
+  --background: #000000;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+}
+
+.settings-card {
+  background: #1f2937;
+  border-radius: 12px;
+  margin: 0 16px 12px 16px;
+  box-shadow: none;
+  width: auto;
+}
+
+.settings-card ion-card-content {
+  padding: 16px;
+}
+
+/* Profile Section */
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #22c55e;
+}
+
+.profile-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.profile-info p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.profile-role {
+  font-size: 11px;
+}
+
+.settings-section-title {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #22c55e;
+}
+
+.settings-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.settings-item {
+  --background: transparent;
+  --color: white;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin-bottom: 12px;
+}
+
+.settings-item ion-icon {
+  color: #22c55e;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.settings-item ion-label {
+  font-size: 14px;
+  color: white;
+}
+
+/* User List */
+.user-list {
+  background: transparent;
+}
+
+.user-item {
+  --background: #374151;
+  --border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 4px 12px;
+}
+
+.user-avatar-small {
+  width: 40px;
+  height: 40px;
+}
+
+.user-item h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.user-item p {
+  font-size: 11px;
+  color: #9ca3af;
+  margin: 2px 0;
+}
+
+.user-email {
+  font-size: 10px;
+}
+
+/* Logout & Save Sections */
+.logout-section {
+  padding: 0 16px 16px 16px;
+}
+
+.logout-button {
+  --border-color: #ef4444;
+  --color: #ef4444;
+  --border-radius: 12px;
+  margin: 0;
+  height: 48px;
+}
+
+.save-section {
+  padding: 0 16px 32px 16px;
+}
+
+.save-button {
+  --background: #22c55e;
+  --background-hover: #16a34a;
+  --border-radius: 12px;
+  margin: 0;
+  height: 48px;
+}
+
+/* -------------------- */
+/* MENU STILLERI */
+/* -------------------- */
+
+.custom-menu {
+  --background: #000000;
+  --width: 240px;
+}
+
+.split-pane-visible > .split-pane-side {
+  min-width: 240px !important;
+  max-width: 240px !important;
+}
+
+ion-menu.custom-menu .menu-inner {
+  width: 240px !important;
+}
+
+.menu-header {
+  --background: #000000;
+  --border-style: none;
+  padding: 20px 16px 16px 16px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.menu-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-avatar {
+  width: 56px;
+  height: 56px;
+  border: 2px solid #22c55e;
+}
+
+.menu-avatar ion-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.menu-user-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.menu-user-info p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.menu-content {
+  --background: #000000;
+  --padding-bottom: 20px;
+}
+
+.menu-list {
+  background: transparent;
+  padding: 8px 0;
+}
+
+.menu-item {
+  --background: transparent;
+  --background-hover: #1f2937;
+  --background-focused: #1f2937;
+  --background-activated: #1f2937;
+  --color: #9ca3af;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin: 0;
+  --min-height: 48px;
+}
+
+.menu-icon {
+  color: #9ca3af;
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+.menu-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.menu-item[aria-current="page"] {
+  --background: #1f2937;
+  border-left: 3px solid #22c55e;
+}
+
+.menu-item[aria-current="page"] .menu-icon {
+  color: #22c55e;
+}
+
+.menu-item[aria-current="page"] .menu-label {
+  color: white;
+}
+
+.menu-divider {
+  height: 1px;
+  background: #1f2937;
+  margin: 12px 16px;
+}
+
+.logout-item {
+  margin-top: 8px;
+}
+
+.logout-icon {
+  color: #ef4444;
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+.logout-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ef4444;
+}
+
+.menu-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.menu-version {
+  font-size: 11px;
+  color: #4b5563;
+  letter-spacing: 0.5px;
+}
+
+/* Scrollbar */
+.menu-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu-content::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.menu-content::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 4px;
+}
+
+/* -------------------- */
+/* MODAL STILLERI */
+/* -------------------- */
+
+.stats-modal {
+  --background: #000000;
+}
+
+.stats-modal .modal-wrapper {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.stats-modal-header {
+  --background: #1f2937;
+  --color: white;
+  --border-style: none;
+  border-bottom: 1px solid #374151;
+}
+
+.stats-modal-header ion-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  padding: 0px 16px;
+}
+
+.stats-modal-content {
+  --background: #000000;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+.stats-modal-teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.stats-team {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.home-team {
+  justify-content: flex-start;
+}
+
+.away-team {
+  justify-content: flex-end;
+}
+
+.team-logo-large {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.team-name-large {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.team-score-large {
+  font-size: 24px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+.stats-vs {
+  font-size: 14px;
+  font-weight: bold;
+  color: #9ca3af;
+  padding: 0 16px;
+}
+
+.stats-match-info {
+  text-align: center;
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+
+.match-duration {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+.match-half {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stats-list-item {
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.stats-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.stats-values {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.home-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.away-value {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ef4444;
+}
+
+.stats-bar-container {
+  display: flex;
+  height: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #374151;
+  width: 100%;
+}
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  transition: width 0.3s ease;
+  min-width: 40px;
+}
+
+.home-stats-bar {
+  background: #3b82f6;
+}
+
+.away-stats-bar {
+  background: #ef4444;
+}
+
+.stats-percent {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.stats-legend {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  background: #1f2937;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.home-legend {
+  background: #3b82f6;
+}
+
+.away-legend {
+  background: #ef4444;
+}
+
+/* -------------------- */
+/* ANIMASYONLAR */
+/* -------------------- */
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* -------------------- */
+/* RESPONSIVE */
+/* -------------------- */
+
+@media (max-width: 480px) {
+  .filter-value-box {
+    width: 90px;
+    min-height: 70px;
+  }
+  
+  .filter-value-item {
+    font-size: 8px;
+  }
+  
+  .stats-hover-card {
+    width: 280px;
+    right: -10px;
+  }
+  
+  .stat-label {
+    width: 70px;
+    font-size: 9px;
+  }
+  
+  .team-name {
+    font-size: 10px;
+  }
+  
+  .team-logo-large {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+  
+  .team-name-large {
+    font-size: 11px;
+  }
+  
+  .team-score-large {
+    font-size: 18px;
+  }
+  
+  .stats-vs {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+  
+  .login-logo {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .login-logo-text {
+    font-size: 40px;
+  }
+  
+  .login-title {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 768px) {
+  .filter-value-box {
+    width: 130px;
+  }
+  
+  .login-card {
+    margin: 32px;
+    border-radius: 20px;
+  }
+  
+  .login-logo {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .login-logo-text {
+    font-size: 54px;
+  }
+  
+  .login-title {
+    font-size: 28px;
+  }
+}
+
+/* GOL Animasyonu */
+.goal-animation-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: goalPulse 0.5s ease-in-out infinite alternate;
+}
+
+.goal-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ef4444;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: goalShake 0.3s ease-in-out infinite;
+}
+
+/* Yanıp sönen çizgiler (çapraz animasyon) */
+.filter-value-box.goal-animation {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(239, 68, 68, 0.3),
+    transparent
+  );
+  animation: crossShine 1s linear infinite;
+}
+
+.filter-value-box.goal-animation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(239, 68, 68, 0.5),
+    transparent
+  );
+  animation: crossMove 1.5s ease-in-out infinite;
+}
+
+@keyframes goalPulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes goalShake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes crossShine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes crossMove {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ============================================ */
+/* CANLI SAAT STILI */
+/* ============================================ */
+
+/* ============================================ */
+/* LIVE BUTONU VE SAAT - AYNI SATIR */
+/* ============================================ */
+
+.live-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 12px;
+}
+
+/* Live Button */
+.live-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #1f2937;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.live-button-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+
+.live-badge {
+  --background: #ef4444;
+  --color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.live-button.active {
+  background: #22c55e;
+}
+
+.live-button.active .live-button-text {
+  color: white;
+}
+
+.live-button.active .live-badge {
+  --background: white;
+  --color: #ef4444;
+}
+
+.live-button:hover {
+  background: #374151;
+}
+
+.live-button.active:hover {
+  background: #16a34a;
+}
+
+/* Canlı Saat */
+.live-clock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1f2937;
+  padding: 6px 12px;
+  border-radius: 24px;
+  border: 1px solid #374151;
+  flex-shrink: 0;
+}
+
+.live-clock-icon {
+  font-size: 14px;
+  animation: pulse 1.5s infinite;
+}
+
+.live-clock-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: #22c55e;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .live-row {
+    padding: 8px 12px;
+  }
+  
+  .live-button {
+    padding: 6px 16px;
+  }
+  
+  .live-button-text {
+    font-size: 13px;
+  }
+  
+  .live-clock {
+    padding: 4px 10px;
+  }
+  
+  .live-clock-icon {
+    font-size: 12px;
+  }
+  
+  .live-clock-time {
+    font-size: 12px;
+  }
+}
+
+.green-active-box {
+  width: 100%;
+  height: 100%;
+  min-height: 60px;
+  background: #22c55e;
+  border-radius: 8px;
+}
+

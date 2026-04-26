@@ -1,0 +1,217 @@
+/* Custom Menu Styles - Dark Theme */
+.custom-menu {
+  --background: #000000;
+  --width: 240px;
+}
+
+/* Split-pane açıkken çalışması için */
+.split-pane-visible > .split-pane-side {
+  min-width: 240px !important;
+  max-width: 240px !important;
+}
+
+/* Menu içindeki inner element için de */
+ion-menu.custom-menu .menu-inner {
+  width: 240px !important;
+}
+
+/* Menu Header */
+.menu-header {
+  --background: #000000;
+  --border-style: none;
+  padding: 20px 16px 16px 16px;
+  border-bottom: 1px solid #1f2937;
+}
+
+.menu-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menu-avatar {
+  width: 56px;
+  height: 56px;
+  border: 2px solid #22c55e;
+}
+
+.menu-avatar ion-img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.menu-user-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.menu-user-info p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Menu Content */
+.menu-content {
+  --background: #000000;
+  --padding-bottom: 20px;
+}
+
+.menu-list {
+  background: transparent;
+  padding: 8px 0;
+}
+
+/* Menu Items */
+.menu-item {
+  --background: transparent;
+  --background-hover: #1f2937;
+  --background-focused: #1f2937;
+  --background-activated: #1f2937;
+  --color: #9ca3af;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  margin: 0;
+  --min-height: 48px;
+}
+
+.menu-item:hover {
+  --background: #1f2937;
+}
+
+.menu-icon {
+  color: #9ca3af;
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+.menu-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+/* Active Item Styling */
+.menu-item[aria-current="page"] {
+  --background: #1f2937;
+  border-left: 3px solid #22c55e;
+}
+
+.menu-item[aria-current="page"] .menu-icon {
+  color: #22c55e;
+}
+
+.menu-item[aria-current="page"] .menu-label {
+  color: white;
+}
+
+/* Divider */
+.menu-divider {
+  height: 1px;
+  background: #1f2937;
+  margin: 12px 16px;
+}
+
+/* Logout Item */
+.logout-item {
+  margin-top: 8px;
+}
+
+.logout-icon {
+  color: #ef4444;
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+.logout-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ef4444;
+}
+
+/* Menu Footer */
+.menu-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.menu-version {
+  font-size: 11px;
+  color: #4b5563;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .menu-header-content {
+    padding: 8px 0;
+  }
+  
+  .menu-avatar {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .menu-user-info h3 {
+    font-size: 18px;
+  }
+  
+  .menu-user-info p {
+    font-size: 13px;
+  }
+  
+  .menu-item {
+    --padding-start: 20px;
+    --padding-end: 20px;
+  }
+}
+
+/* Animation for active state */
+.menu-item {
+  transition: all 0.2s ease;
+}
+
+.menu-item:active {
+  transform: scale(0.98);
+}
+
+/* Scrollbar styling */
+.menu-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.menu-content::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.menu-content::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 4px;
+}
+
+ion-menu-button {
+  --color: white !important;
+  --background: transparent !important;
+}
+
+ion-menu-button::part(icon) {
+  color: white !important;
+}
+
+ion-menu-button::part(native) {
+  background: transparent !important;
+}
+
+/* Toolbar içindeki tüm butonlar için */
+ion-toolbar ion-button,
+ion-toolbar ion-menu-button {
+  --background: transparent !important;
+  --color: white !important;
+}
