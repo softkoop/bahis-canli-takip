@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Match } from '../../domain/entities/match.entity';
-import { MatchStats } from '../../domain/entities/match-stats.entity';
-import { TeamStats } from '../../domain/entities/team-stats.entity';
+import { MatchStats } from '../../domain/value-objects/match-stats.value-objects';
+import { TeamStats } from '../../domain/value-objects/team-stats.value-objects';
 import { TeamName } from '../../domain/value-objects/team-name.value-object';
 import { Odds } from '../../domain/value-objects/odds.value-object';
 import {

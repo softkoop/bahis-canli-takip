@@ -164,7 +164,7 @@ const calculateGreenState = (
     };
   }
 
-  const currentMinute = match.stats.matchDuration;
+  const currentMinute = match.minute || 0;
   const isFirstHalf = currentMinute <= 45;
   const isSecondHalf = currentMinute > 45 && currentMinute <= 90;
 
@@ -203,14 +203,38 @@ const calculateGreenState = (
   const currentFilters = isFirstHalf ? firstHalfFilters : secondHalfFilters;
   const currentHalf = isFirstHalf ? "first" : "second";
   const filterMinute = currentFilters.duration;
-  const filterWindowEnd = filterMinute + 3; // 3 dakika tolerans
+
+  console.log(`🔍 MAÇ ${match.id}:`, {
+    currentMinute,
+    isFirstHalf,
+    isSecondHalf,
+    filterMinute,
+    selectedFilters: isFirstHalf ? "FIRST_HALF" : "SECOND_HALF",
+    firstHalfDuration: firstHalfFilters.duration,
+    secondHalfDuration: secondHalfFilters.duration,
+  });
+
+  // 🔥 YENİ: Filtre penceresi - yarının başından filterMinute'a kadar
+  // 1. Yarı için: 0-45 arası, filterMinute'a kadar
+  // 2. Yarı için: 46-90 arası, filterMinute'a kadar
+  let isInFilterWindow = false;
+
+  if (isFirstHalf) {
+    // 1. Yarı: 0. dakikadan filterMinute'a kadar kontrol et
+    // filterMinute 1-45 arası bir değer
+    isInFilterWindow = currentMinute <= filterMinute;
+  } else if (isSecondHalf) {
+    // 2. Yarı: 46. dakikadan filterMinute'a kadar kontrol et
+    // filterMinute 46-90 arası bir değer
+    isInFilterWindow = currentMinute <= filterMinute;
+  }
 
   const goalMinute = match.minute || 0;
 
-  // Gol filtre dakikasından ÖNCE olduysa ASLA YEŞİL YANMAZ
-  const goalBeforeFilter =
-    goalScored && goalMinute > 0 && goalMinute < filterMinute;
-  if (goalBeforeFilter) {
+  // Gol filtre dakikasından ÖNCE veya EŞİT olduysa yeşil asla yanmasın
+  const goalBeforeOrAtFilter =
+    goalScored && goalMinute > 0 && goalMinute <= filterMinute;
+  if (goalBeforeOrAtFilter) {
     return {
       isGreenActive: false,
       showGoalAnimation: false,
@@ -220,8 +244,8 @@ const calculateGreenState = (
     };
   }
 
-  // Filtre penceresi geçtiyse artık kontrol etme
-  if (currentMinute > filterWindowEnd) {
+  // Filtre penceresi geçtiyse (filterMinute'dan büyükse) artık kontrol etme
+  if (currentMinute > filterMinute) {
     return {
       isGreenActive: false,
       showGoalAnimation: false,
@@ -246,7 +270,7 @@ const calculateGreenState = (
   }
 
   // Yeşil yanmıyorsa ve filtre penceresindeysek kontrol et
-  if (currentMinute >= filterMinute && currentMinute <= filterWindowEnd) {
+  if (isInFilterWindow) {
     const oneTeamPasses = doesAnyTeamPassAllFilters(match, currentFilters);
     if (oneTeamPasses) {
       return {
@@ -268,68 +292,163 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [groupedMatches, setGroupedMatches] = useState<LeagueGroup[]>([]);
-  const [liveMatches, setLiveMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedDate, setSelectedDate] = useState<string>(() => {
-    return new Date().toISOString().split("T")[0];
-  });
+  const [selectedDate, setSelectedDate] = useState(
+    () => new Date().toISOString().split("T")[0],
+  );
   const [dateList, setDateList] = useState<
     { date: string; dayName: string; dayNumber: number }[]
   >([]);
   const [isSocketConnected, setIsSocketConnected] = useState(false);
-
   const [firstHalfFilters, setFirstHalfFilters] =
     useState<FilterStats>(loadFirstHalfFilters);
   const [secondHalfFilters, setSecondHalfFilters] = useState<FilterStats>(
     loadSecondHalfFilters,
   );
-
   const [cleanupSocket, setCleanupSocket] = useState<(() => void) | null>(null);
-
   const [greenStates, setGreenStates] = useState<
     Record<number, MatchGreenState>
   >({});
-
-  // previousScores state'i - gol kontrolü için
   const [previousScores, setPreviousScores] = useState<
     Record<number, { home: number; away: number }>
   >({});
-
   const [trackedMatchIds, setTrackedMatchIds] = useState<number[]>(() => {
     const saved = localStorage.getItem("tracked_matches");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Takip listesini güncelleme fonksiyonu
   const toggleTrackMatch = useCallback((matchId: number) => {
     setTrackedMatchIds((prev) => {
       const newList = prev.includes(matchId)
         ? prev.filter((id) => id !== matchId)
         : [...prev, matchId];
-
-      // localStorage'a kaydet
       localStorage.setItem("tracked_matches", JSON.stringify(newList));
-
-      // WebSocket'e bildir
       mockDataService.updateTrackedMatches(newList);
-
       return newList;
     });
   }, []);
 
-  const loadDateList = useCallback(async () => {
+  // ============ GÜNCELLEME (Sadece minute, score, stats) ============
+  const updateMatches = useCallback((updatedMatches: Match[]) => {
+    setGroupedMatches((prev) =>
+      prev.map((group) => ({
+        ...group,
+        matches: group.matches.map((existing) => {
+          const updated = updatedMatches.find((u) => u.id === existing.id);
+          if (!updated) return existing;
+
+          return {
+            ...existing,
+            ...updated,
+            homeTeam: existing.homeTeam,
+            awayTeam: existing.awayTeam,
+            stats: updated.stats
+              ? { ...existing.stats, ...updated.stats }
+              : existing.stats,
+          } as Match;
+        }),
+      })),
+    );
+  }, []);
+
+  // ============ REFRESH (Yeni maçlar veya biten maçlar) ============
+  const refreshLiveMatches = useCallback(async () => {
     try {
-      const dates = await mockDataService.getDateList();
-      setDateList(dates);
-    } catch (err) {
-      console.error("Failed to load date list:", err);
+      console.log("🔄 Canlı maçlar yenileniyor...");
+      const freshLiveMatches = await mockDataService.getLiveMatches();
+
+      setGroupedMatches((prev) => {
+        const today = new Date().toISOString().split("T")[0];
+        const liveGroup = {
+          league: "🔴 CANLI MAÇLAR",
+          flag: "⚽",
+          matches: freshLiveMatches,
+        };
+
+        const hasLiveGroup = prev.some((g) => g.league === "🔴 CANLI MAÇLAR");
+        if (hasLiveGroup) {
+          return prev.map((g) =>
+            g.league === "🔴 CANLI MAÇLAR" ? liveGroup : g,
+          );
+        }
+        return [liveGroup, ...prev];
+      });
+
+      console.log(`✅ ${freshLiveMatches.length} canlı maç yüklendi`);
+    } catch (error) {
+      console.error("Refresh hatası:", error);
     }
   }, []);
 
-  // Refresh fonksiyonu
+  // ============ FİKSTÜR YÜKLEME ============
+  const loadFixtures = useCallback(async () => {
+    try {
+      setLoading(true);
+      const grouped = await mockDataService.getGroupedMatches(selectedDate);
+      const live = await mockDataService.getLiveMatches();
 
-  // 🔴 DÜZELTİLDİ: Sonsuz döngüyü önlemek için updateGreenStates useCallback içinde ama bağımlılıklar optimize edildi
+      console.log("🔴 Fikstür maçları (grouped):", grouped.length, "grup");
+      console.log("🔴 Canlı maçlar (live):", live.length, "maç");
+      console.log(
+        "🔴 Seçili tarih:",
+        selectedDate,
+        "bugün mü?",
+        selectedDate === new Date().toISOString().split("T")[0],
+      );
+
+      const today = new Date().toISOString().split("T")[0];
+      let finalGrouped = grouped;
+
+      if (selectedDate === today && live.length > 0) {
+        const liveGroup = {
+          league: "🔴 CANLI MAÇLAR",
+          flag: "⚽",
+          matches: live,
+        };
+        finalGrouped = [liveGroup, ...grouped];
+      }
+
+      setGroupedMatches(finalGrouped);
+      setError(null);
+    } catch (err) {
+      setError("Veriler yüklenirken bir hata oluştu");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [selectedDate]);
+
+  // ============ WEBSOCKET BAĞLANTISI ============
+  const startLiveDataSimulation = useCallback(() => {
+    if (cleanupSocket) cleanupSocket();
+
+    const cleanup = mockDataService.startLiveDataSimulation(
+      (updatedMatches) => {
+        updateMatches(updatedMatches);
+      },
+    );
+
+    setCleanupSocket(() => cleanup);
+    setIsSocketConnected(true);
+    return cleanup;
+  }, [cleanupSocket, updateMatches]);
+
+  // ============ EVENT DİNLEYİCİLERİ ============
+  useEffect(() => {
+    const handleRefreshLiveMatches = () => {
+      refreshLiveMatches();
+    };
+
+    window.addEventListener("refresh-live-matches", handleRefreshLiveMatches);
+    return () => {
+      window.removeEventListener(
+        "refresh-live-matches",
+        handleRefreshLiveMatches,
+      );
+    };
+  }, [refreshLiveMatches]);
+
   const updateGreenStates = useCallback(() => {
     const allMatches: Match[] = [];
     groupedMatches.forEach((group) => {
@@ -350,7 +469,6 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
       };
 
       const previousScore = previousScores[match.id];
-
       const goalScored = previousScore
         ? (match.score?.home || 0) > previousScore.home ||
           (match.score?.away || 0) > previousScore.away
@@ -369,119 +487,9 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setGreenStates(newStates);
     setPreviousScores(newPreviousScores);
-  }, [
-    groupedMatches,
-    firstHalfFilters,
-    secondHalfFilters,
-    previousScores,
-    greenStates,
-  ]);
+  }, [groupedMatches, firstHalfFilters, secondHalfFilters, previousScores]);
 
-  // 🔴 DÜZELTİLDİ: useEffect sadece groupedMatches ve filtreler değiştiğinde çalışır
-  useEffect(() => {
-    updateGreenStates();
-  }, [groupedMatches, firstHalfFilters, secondHalfFilters]); // ← updateGreenStates bağımlılıktan çıkarıldı!
-
-  const getMatchGreenState = useCallback(
-    (matchId: number): MatchGreenState => {
-      return (
-        greenStates[matchId] || {
-          isGreenActive: false,
-          showGoalAnimation: false,
-          greenActivatedAtMinute: 0,
-          goalScoredAfterGreen: false,
-          activeHalf: null,
-        }
-      );
-    },
-    [greenStates],
-  );
-
-  useEffect(() => {
-    const handleMatchRemoved = (event: CustomEvent) => {
-      const { matchId } = event.detail;
-      setTrackedMatchIds((prev) => prev.filter((id) => id !== matchId));
-    };
-
-    window.addEventListener(
-      "match-removed",
-      handleMatchRemoved as EventListener,
-    );
-
-    return () => {
-      window.removeEventListener(
-        "match-removed",
-        handleMatchRemoved as EventListener,
-      );
-    };
-  }, []);
-
-  const loadMatches = useCallback(async () => {
-    try {
-      setLoading(true);
-      const grouped = await mockDataService.getGroupedMatches(selectedDate);
-      const live = await mockDataService.getLiveMatches();
-
-      // 🔴 Canlı maçları groupedMatches'e ekle (bugünse)
-      const today = new Date().toISOString().split("T")[0];
-      let finalGrouped = grouped;
-
-      if (selectedDate === today && live.length > 0) {
-        const liveGroup = {
-          league: "🔴 CANLI MAÇLAR",
-          flag: "⚽",
-          matches: live,
-        };
-        finalGrouped = [liveGroup, ...grouped];
-      }
-
-      setGroupedMatches(finalGrouped);
-      setLiveMatches(live);
-      setError(null);
-    } catch (err) {
-      setError("Veriler yüklenirken bir hata oluştu");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }, [selectedDate]);
-
-  const refreshMatches = useCallback(async () => {
-    await loadMatches();
-  }, [loadMatches]);
-
-  const handleSetSelectedDate = useCallback((date: string) => {
-    setSelectedDate(date);
-    mockDataService.setSelectedDate(date);
-  }, []);
-
-  const updateFirstHalfFilters = useCallback((values: FilterStats) => {
-    console.log("updateFirstHalfFilters çağrıldı, gelen değer:", values);
-    setFirstHalfFilters(values);
-    saveFirstHalfFilters(values);
-  }, []);
-
-  const updateSecondHalfFilters = useCallback((values: FilterStats) => {
-    console.log("updateSecondHalfFilters çağrıldı, gelen değer:", values);
-    setSecondHalfFilters(values);
-    saveSecondHalfFilters(values);
-  }, []);
-
-  const clearFilters = useCallback(() => {
-    setFirstHalfFilters(defaultFirstHalfFilters);
-    setSecondHalfFilters(defaultSecondHalfFilters);
-    saveFirstHalfFilters(defaultFirstHalfFilters);
-    saveSecondHalfFilters(defaultSecondHalfFilters);
-  }, []);
-
-  const isMatchMatchingFilters = useCallback(
-    (match: Match): boolean => {
-      const state = greenStates[match.id];
-      return state?.isGreenActive || false;
-    },
-    [greenStates],
-  );
-
+  // ============ GET MATCHING FILTER ITEMS (DOLDURULMUŞ HALİ) ============
   const getMatchingFilterItems = useCallback(
     (match: Match): MatchingFilterItem[] => {
       if (!match.isLive || !match.stats) return [];
@@ -563,115 +571,81 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
     [firstHalfFilters, secondHalfFilters],
   );
 
-  const startLiveDataSimulation = useCallback(() => {
-    if (cleanupSocket) {
-      cleanupSocket();
-    }
-
-    const cleanup = mockDataService.startLiveDataSimulation(
-      (updatedMatches) => {
-        setGroupedMatches((prev) =>
-          prev.map((group) => ({
-            ...group,
-            matches: group.matches.map((m) => {
-              const updated = updatedMatches.find((u) => u.id === m.id);
-              if (updated) {
-                const mergedStats = updated.stats
-                  ? {
-                      ...m.stats,
-                      ...updated.stats,
-                      home: updated.stats.home
-                        ? ({
-                            ...(m.stats?.home || {}),
-                            ...updated.stats.home,
-                          } as any)
-                        : m.stats?.home,
-                      away: updated.stats.away
-                        ? ({
-                            ...(m.stats?.away || {}),
-                            ...updated.stats.away,
-                          } as any)
-                        : m.stats?.away,
-                    }
-                  : m.stats;
-
-                return {
-                  ...m,
-                  ...updated,
-                  homeTeam: m.homeTeam,
-                  awayTeam: m.awayTeam,
-                  stats: mergedStats,
-                } as Match;
-              }
-              return m;
-            }),
-          })),
-        );
-
-        setLiveMatches((prev) =>
-          prev.map((m) => {
-            const updated = updatedMatches.find((u) => u.id === m.id);
-            if (updated) {
-              const mergedStats = updated.stats
-                ? {
-                    ...m.stats,
-                    ...updated.stats,
-                    home: updated.stats.home
-                      ? ({
-                          ...(m.stats?.home || {}),
-                          ...updated.stats.home,
-                        } as any)
-                      : m.stats?.home,
-                    away: updated.stats.away
-                      ? ({
-                          ...(m.stats?.away || {}),
-                          ...updated.stats.away,
-                        } as any)
-                      : m.stats?.away,
-                  }
-                : m.stats;
-
-              return {
-                ...m,
-                ...updated,
-                homeTeam: m.homeTeam,
-                awayTeam: m.awayTeam,
-                stats: mergedStats,
-              } as Match;
-            }
-            return m;
-          }),
-        );
-      },
-    );
-
-    setCleanupSocket(() => cleanup);
-    setIsSocketConnected(true);
-
-    return cleanup;
-  }, [cleanupSocket]);
-
   useEffect(() => {
-    loadDateList();
-    loadMatches();
-    const cleanup = startLiveDataSimulation();
+    updateGreenStates();
+  }, [groupedMatches, firstHalfFilters, secondHalfFilters]);
 
+  const getMatchGreenState = useCallback(
+    (matchId: number): MatchGreenState => {
+      return (
+        greenStates[matchId] || {
+          isGreenActive: false,
+          showGoalAnimation: false,
+          greenActivatedAtMinute: 0,
+          goalScoredAfterGreen: false,
+          activeHalf: null,
+        }
+      );
+    },
+    [greenStates],
+  );
+
+  const isMatchMatchingFilters = useCallback(
+    (match: Match): boolean => {
+      return greenStates[match.id]?.isGreenActive || false;
+    },
+    [greenStates],
+  );
+
+  // ============ TARİH DEĞİŞİMİ ============
+  const handleSetSelectedDate = useCallback((date: string) => {
+    setSelectedDate(date);
+    mockDataService.setSelectedDate(date);
+  }, []);
+
+  const refreshMatches = useCallback(async () => {
+    await loadFixtures();
+  }, [loadFixtures]);
+
+  // ============ FİLTRELER ============
+  const updateFirstHalfFilters = useCallback((values: FilterStats) => {
+    setFirstHalfFilters(values);
+    saveFirstHalfFilters(values);
+  }, []);
+
+  const updateSecondHalfFilters = useCallback((values: FilterStats) => {
+    setSecondHalfFilters(values);
+    saveSecondHalfFilters(values);
+  }, []);
+
+  const clearFilters = useCallback(() => {
+    setFirstHalfFilters(defaultFirstHalfFilters);
+    setSecondHalfFilters(defaultSecondHalfFilters);
+    saveFirstHalfFilters(defaultFirstHalfFilters);
+    saveSecondHalfFilters(defaultSecondHalfFilters);
+  }, []);
+
+  // ============ İNİTİALİZASYON ============
+  useEffect(() => {
+    loadFixtures();
+    const cleanup = startLiveDataSimulation();
     return () => {
-      if (cleanup) {
-        cleanup();
-      }
-      if (cleanupSocket) {
-        cleanupSocket();
-      }
+      if (cleanup) cleanup();
+      if (cleanupSocket) cleanupSocket();
       mockDataService.stopLiveDataSimulation();
     };
   }, [selectedDate]);
+
+  // ============ DATE LIST ============
+  useEffect(() => {
+    mockDataService.getDateList().then(setDateList).catch(console.error);
+  }, []);
 
   return (
     <MatchContext.Provider
       value={{
         matches: [],
-        liveMatches,
+        liveMatches: [],
         groupedMatches,
         loading,
         error,
@@ -699,8 +673,6 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
 
 export const useMatches = () => {
   const context = useContext(MatchContext);
-  if (!context) {
-    throw new Error("useMatches must be used within MatchProvider");
-  }
+  if (!context) throw new Error("useMatches must be used within MatchProvider");
   return context;
 };

@@ -4,7 +4,6 @@ import { FootballApplicationService } from './services/football-application.serv
 import { FixtureController } from './controllers/fixture.controller';
 import { LiveUpdateGateway } from './gateways/live-update.gateway';
 import { LiveMatchTrackerService } from './services/live-match-tracker.service';
-import { LiveMatchUpdaterService } from './services/live-match-updater.service';
 
 @Module({
   imports: [InfrastructureModule], // ← InfrastructureModule'ü import et
@@ -12,7 +11,6 @@ import { LiveMatchUpdaterService } from './services/live-match-updater.service';
   providers: [
     FootballApplicationService,
     LiveMatchTrackerService,
-    LiveMatchUpdaterService,
     LiveUpdateGateway,
   ],
 })

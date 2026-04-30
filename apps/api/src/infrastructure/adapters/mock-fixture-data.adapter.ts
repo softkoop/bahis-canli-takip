@@ -4,8 +4,7 @@ import { IFixtureDataProvider } from '../../domain/ports/fixture-data-provider.p
 import { Match } from '../../domain/entities/match.entity';
 
 import { MockStatsGenerator } from '../generators/mock-stats-generator.service';
-import { MATCH_REPOSITORY_TOKEN } from 'src/domain/ports/tokens';
-import type { IMatchRepository } from 'src/domain/ports/match-repository.port';
+import { IMatchRepository } from 'src/domain/ports/match-repository.port';
 
 @Injectable()
 export class MockFixtureDataAdapter implements IFixtureDataProvider {
@@ -79,7 +78,7 @@ export class MockFixtureDataAdapter implements IFixtureDataProvider {
 
   constructor(
     private readonly statsGenerator: MockStatsGenerator,
-    @Inject(MATCH_REPOSITORY_TOKEN)
+    @Inject(IMatchRepository)
     private readonly matchRepository: IMatchRepository,
   ) {}
 

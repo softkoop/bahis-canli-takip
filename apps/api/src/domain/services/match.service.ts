@@ -1,23 +1,12 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { Observable } from 'rxjs';
 import { Match } from '../entities/match.entity';
-import type { IMatchRepository } from '../ports/match-repository.port';
-import type { IFixtureDataProvider } from '../ports/fixture-data-provider.port';
-import type { ILiveDataProvider } from '../ports/live-data-provider.port';
-import {
-  MATCH_REPOSITORY_TOKEN,
-  FIXTURE_PROVIDER_TOKEN,
-  LIVE_PROVIDER_TOKEN,
-} from '../ports/tokens';
+import { IMatchRepository } from '../ports/match-repository.port';
+import { IFixtureDataProvider } from '../ports/fixture-data-provider.port';
+import { ILiveDataProvider } from '../ports/live-data-provider.port';
 
-@Injectable()
 export class MatchDomainService {
   constructor(
-    @Inject(MATCH_REPOSITORY_TOKEN)
     private readonly matchRepository: IMatchRepository,
-    @Inject(FIXTURE_PROVIDER_TOKEN)
     private readonly fixtureProvider: IFixtureDataProvider,
-    @Inject(LIVE_PROVIDER_TOKEN)
     private readonly liveProvider: ILiveDataProvider,
   ) {}
 
@@ -55,6 +44,7 @@ export class MatchDomainService {
 
   async getMatchesByDate(date: string): Promise<Match[]> {
     // 1. Önce cache'den kontrol et
+    console.log(`🔍 getMatchesByDate çağrıldı: ${date}`);
     const cached = await this.matchRepository.findByDate(date);
     const now = new Date();
 
@@ -98,10 +88,6 @@ export class MatchDomainService {
     }
 
     return await this.liveProvider.getCurrentLiveMatches();
-  }
-
-  getLiveMatchUpdates(): Observable<Match[]> {
-    return this.liveProvider.getLiveMatchUpdates();
   }
 
   async getMatchStats(matchId: number): Promise<Match | null> {

@@ -43,6 +43,11 @@ export class InMemoryMatchRepository implements IMatchRepository {
       InMemoryMatchRepository.matches.set(match.id, match);
     }
   }
+  async upsert(match: Match): Promise<void> {
+    if (InMemoryMatchRepository.matches.has(match.id)) {
+      InMemoryMatchRepository.matches.set(match.id, match);
+    }
+  }
 
   async delete(id: number): Promise<void> {
     InMemoryMatchRepository.matches.delete(id);

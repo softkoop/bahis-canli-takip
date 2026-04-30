@@ -1,15 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IFixtureDataProvider } from '../../domain/ports/fixture-data-provider.port';
 import { Match } from '../../domain/entities/match.entity';
 import { ApiFootballClient } from '../clients/api-football.client';
 import { ApiFootballToDomainMapper } from '../mappers/api-football-to-domain.mapper';
 import { FileMatchRepository } from '../repositories/file-match.repository';
+import { IMatchRepository } from 'src/domain/ports/match-repository.port';
 
 @Injectable()
 export class ApiFootballFixtureAdapter implements IFixtureDataProvider {
   constructor(
     private readonly apiClient: ApiFootballClient,
     private readonly mapper: ApiFootballToDomainMapper,
+    @Inject(IMatchRepository)
     private readonly fileRepo: FileMatchRepository,
   ) {}
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Match } from '../../domain/entities/match.entity';
-import { MatchStats } from '../../domain/entities/match-stats.entity';
+import { MatchStats } from '../../domain/value-objects/match-stats.value-objects';
 
 // Frontend'in beklediği interface'ler (senin mock-data-api'ndaki gibi)
 export interface FrontendTeam {

@@ -1,7 +1,10 @@
 import { z } from 'zod';
 import { TeamName } from '../value-objects/team-name.value-object';
 import { Odds, OddsSchema } from '../value-objects/odds.value-object';
-import { MatchStats, MatchStatsSchema } from './match-stats.entity';
+import {
+  MatchStats,
+  MatchStatsSchema,
+} from '../value-objects/match-stats.value-objects';
 
 // TeamName için plain schema (transform yok)
 const TeamNamePlainSchema = z.object({

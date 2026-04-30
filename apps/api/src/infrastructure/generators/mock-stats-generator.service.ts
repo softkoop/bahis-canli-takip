@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { MatchStats } from '../../domain/entities/match-stats.entity';
-import { TeamStats } from '../../domain/entities/team-stats.entity';
+import { MatchStats } from '../../domain/value-objects/match-stats.value-objects';
+import { TeamStats } from '../../domain/value-objects/team-stats.value-objects';
 
 @Injectable()
 export class MockStatsGenerator {

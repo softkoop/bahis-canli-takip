@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/require-await */
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { ILiveDataProvider } from '../../domain/ports/live-data-provider.port';
 import { Match } from '../../domain/entities/match.entity';
 import { MockStatsGenerator } from '../generators/mock-stats-generator.service';
-import { MATCH_REPOSITORY_TOKEN } from '../../domain/ports/tokens';
-import type { IMatchRepository } from 'src/domain/ports/match-repository.port';
+import { IMatchRepository } from 'src/domain/ports/match-repository.port';
 
 @Injectable()
 export class MockLiveDataAdapter implements ILiveDataProvider, OnModuleInit {
@@ -15,7 +14,7 @@ export class MockLiveDataAdapter implements ILiveDataProvider, OnModuleInit {
 
   constructor(
     private readonly statsGenerator: MockStatsGenerator,
-    @Inject(MATCH_REPOSITORY_TOKEN)
+    @Inject(IMatchRepository)
     private readonly matchRepository: IMatchRepository,
   ) {}
 
@@ -98,10 +97,6 @@ export class MockLiveDataAdapter implements ILiveDataProvider, OnModuleInit {
     if (updatedMatches.length > 0) {
       this.liveUpdatesSubject.next(updatedMatches);
     }
-  }
-
-  getLiveMatchUpdates(): Observable<Match[]> {
-    return this.liveUpdatesSubject.asObservable();
   }
 
   async getMatchStats(matchId: number): Promise<Match | null> {

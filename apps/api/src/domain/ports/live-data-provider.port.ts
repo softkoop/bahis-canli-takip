@@ -1,21 +1,15 @@
-import { Observable } from 'rxjs';
+// src/domain/ports/live-data-provider.port.ts
 import { Match } from '../entities/match.entity';
 
-export interface ILiveDataProvider {
-  /**
-   * Canlı maç verilerini stream olarak sağlar
-   * @returns Observable her 5 saniyede güncellenen Match objeleri
-   */
-  getLiveMatchUpdates(): Observable<Match[]>;
-
+export abstract class ILiveDataProvider {
   /**
    * Belirli bir maçın anlık istatistiklerini getirir
    * @param matchId Maç ID'si
    */
-  getMatchStats(matchId: number): Promise<Match | null>;
+  abstract getMatchStats(matchId: number): Promise<Match | null>;
 
   /**
    * Tüm canlı maçları getirir
    */
-  getCurrentLiveMatches(): Promise<Match[]>;
+  abstract getCurrentLiveMatches(): Promise<Match[]>;
 }

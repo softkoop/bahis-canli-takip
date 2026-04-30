@@ -52,13 +52,16 @@ const MatchStatsModal: React.FC<MatchStatsModalProps> = ({
   const awayTeam = match.awayTeam;
   const stats = match.stats;
 
-  // YÜZDE HESAPLAMA: Toplam üzerinden oran
-  const calculatePercentage = (homeValue: number, awayValue: number) => {
-    const total = homeValue + awayValue;
-    if (total === 0) return { homePercent: 50, awayPercent: 50 };
+  // Dakika ve yarı bilgisini match.minute'ten al
+  const currentMinute = match.minute || 0;
+  const currentHalf = currentMinute <= 45 ? "first" : "second";
+
+  // Çubuk uzunluğunu hesapla (max değere göre oran)
+  const calculateBarWidth = (homeValue: number, awayValue: number) => {
+    const max = Math.max(homeValue, awayValue, 1); // Max değer (en az 1)
     return {
-      homePercent: (homeValue / total) * 100,
-      awayPercent: (awayValue / total) * 100,
+      homeWidth: (homeValue / max) * 100,
+      awayWidth: (awayValue / max) * 100,
     };
   };
 
@@ -68,31 +71,31 @@ const MatchStatsModal: React.FC<MatchStatsModalProps> = ({
       homeValue: stats.home.possession,
       awayValue: stats.away.possession,
       unit: "%",
-      getPercent: () =>
-        calculatePercentage(stats.home.possession, stats.away.possession),
+      getBarWidth: () =>
+        calculateBarWidth(stats.home.possession, stats.away.possession),
     },
     {
       label: "Toplam Şut",
       homeValue: stats.home.shots,
       awayValue: stats.away.shots,
       unit: "",
-      getPercent: () => calculatePercentage(stats.home.shots, stats.away.shots),
+      getBarWidth: () => calculateBarWidth(stats.home.shots, stats.away.shots),
     },
     {
       label: "İsabetli Şut",
       homeValue: stats.home.accurateShots,
       awayValue: stats.away.accurateShots,
       unit: "",
-      getPercent: () =>
-        calculatePercentage(stats.home.accurateShots, stats.away.accurateShots),
+      getBarWidth: () =>
+        calculateBarWidth(stats.home.accurateShots, stats.away.accurateShots),
     },
     {
       label: "Tehlikeli Atak",
       homeValue: stats.home.dangerousAttacks,
       awayValue: stats.away.dangerousAttacks,
       unit: "",
-      getPercent: () =>
-        calculatePercentage(
+      getBarWidth: () =>
+        calculateBarWidth(
           stats.home.dangerousAttacks,
           stats.away.dangerousAttacks,
         ),
@@ -102,8 +105,8 @@ const MatchStatsModal: React.FC<MatchStatsModalProps> = ({
       homeValue: stats.home.corners,
       awayValue: stats.away.corners,
       unit: "",
-      getPercent: () =>
-        calculatePercentage(stats.home.corners, stats.away.corners),
+      getBarWidth: () =>
+        calculateBarWidth(stats.home.corners, stats.away.corners),
     },
   ];
 
@@ -160,47 +163,41 @@ const MatchStatsModal: React.FC<MatchStatsModalProps> = ({
 
         {/* Maç Bilgisi */}
         <div className="stats-match-info">
-          <span className="match-duration">{stats.matchDuration}'</span>
+          <span className="match-duration">{currentMinute}'</span>
           <span className="match-half">
-            {stats.currentHalf === "first" ? "İlk Yarı" : "İkinci Yarı"}
+            {currentHalf === "first" ? "İlk Yarı" : "İkinci Yarı"}
           </span>
         </div>
 
-        {/* İstatistikler - YENİ PROGRESS BAR MANTIĞI */}
+        {/* İstatistikler - SADECE DEĞERLER VE ÇUBUKLAR */}
         <div className="stats-list">
           {statItems.map((item, idx) => {
-            const { homePercent, awayPercent } = item.getPercent();
+            const { homeWidth, awayWidth } = item.getBarWidth();
 
             return (
               <div key={idx} className="stats-list-item">
                 <div className="stats-label">{item.label}</div>
-                <div className="stats-values">
-                  <span className="home-value">
+                <div className="stats-values-row">
+                  <span className="stats-value home-value">
                     {item.homeValue}
                     {item.unit}
                   </span>
-                  <span className="away-value">
+                  <div className="stats-bar-wrapper">
+                    <div className="stats-bar-container">
+                      <div
+                        className="stats-bar home-stats-bar"
+                        style={{ width: `${homeWidth}%` }}
+                      />
+                      <div
+                        className="stats-bar away-stats-bar"
+                        style={{ width: `${awayWidth}%` }}
+                      />
+                    </div>
+                  </div>
+                  <span className="stats-value away-value">
                     {item.awayValue}
                     {item.unit}
                   </span>
-                </div>
-                <div className="stats-bar-container">
-                  <div
-                    className="stats-bar home-stats-bar"
-                    style={{ width: `${homePercent}%` }}
-                  >
-                    <span className="stats-percent">
-                      {Math.round(homePercent)}%
-                    </span>
-                  </div>
-                  <div
-                    className="stats-bar away-stats-bar"
-                    style={{ width: `${awayPercent}%` }}
-                  >
-                    <span className="stats-percent">
-                      {Math.round(awayPercent)}%
-                    </span>
-                  </div>
                 </div>
               </div>
             );

@@ -7,15 +7,14 @@ import { MockStatsGenerator } from './generators/mock-stats-generator.service';
 import { DomainToFrontendMapper } from './mappers/domain-to-frontend.mapper';
 import { ApiResponseMapper } from './mappers/api-response.mapper';
 import { FixtureSchedulerService } from './schedulers/fixture-scheduler.service';
-import {
-  MATCH_REPOSITORY_TOKEN,
-  FIXTURE_PROVIDER_TOKEN,
-  LIVE_PROVIDER_TOKEN,
-} from '../domain/ports/tokens';
 import { ApiFootballFixtureAdapter } from './adapters/api-football-fixture.adapter';
 import { ApiFootballLiveAdapter } from './adapters/api-football-live.adapter';
 import { ApiFootballToDomainMapper } from './mappers/api-football-to-domain.mapper';
 import { ApiFootballClient } from './clients/api-football.client';
+import { IFixtureDataProvider } from 'src/domain/ports/fixture-data-provider.port';
+import { IMatchRepository } from 'src/domain/ports/match-repository.port';
+import { ILiveDataProvider } from 'src/domain/ports/live-data-provider.port';
+import { SqliteMatchRepository } from './repositories/sqlite-match.repoistory';
 
 @Module({
   imports: [ScheduleModule.forRoot()],
@@ -29,28 +28,34 @@ import { ApiFootballClient } from './clients/api-football.client';
     FixtureSchedulerService,
     ApiFootballToDomainMapper,
     ApiFootballFixtureAdapter,
-
-    // Repository
     {
-      provide: MATCH_REPOSITORY_TOKEN,
-      useClass: FileMatchRepository,
+      provide: IMatchRepository,
+      useClass: SqliteMatchRepository,
     },
-    // FIXTURE PROVIDER - GERÇEK API'YE GEÇİŞ!
     {
-      provide: FIXTURE_PROVIDER_TOKEN,
-      useClass: ApiFootballFixtureAdapter, // ← Mock'tan FreeApi'ye geçiş
+      provide: IFixtureDataProvider,
+      useClass: ApiFootballFixtureAdapter,
     },
-    // LIVE PROVIDER (şimdilik mock, sonra değişecek)
     {
-      provide: LIVE_PROVIDER_TOKEN,
+      provide: ILiveDataProvider,
       useClass: ApiFootballLiveAdapter,
     },
-    MatchDomainService,
+    {
+      provide: MatchDomainService,
+      useFactory: (
+        matchRepo: IMatchRepository,
+        fixtureProvider: IFixtureDataProvider,
+        liveProvider: ILiveDataProvider,
+      ) => {
+        return new MatchDomainService(matchRepo, fixtureProvider, liveProvider);
+      },
+      inject: [IMatchRepository, IFixtureDataProvider, ILiveDataProvider],
+    },
   ],
   exports: [
-    MATCH_REPOSITORY_TOKEN,
-    FIXTURE_PROVIDER_TOKEN,
-    LIVE_PROVIDER_TOKEN,
+    IMatchRepository,
+    IFixtureDataProvider,
+    ILiveDataProvider,
     MatchDomainService,
     DomainToFrontendMapper,
     ApiResponseMapper,

@@ -12,15 +12,16 @@ let globalMatches: Map<number, Match> | null = null;
 export class FileMatchRepository implements IMatchRepository {
   private readonly dataPath: string;
   private matches: Map<number, Match>;
+  private pendingUpdates: Map<number, Match> = new Map();
+  private flushScheduled = false;
 
   constructor() {
     this.dataPath = path.join(process.cwd(), 'data', 'matches.json');
 
-    // Global instance kontrolü
     if (!globalMatches) {
       globalMatches = new Map();
-      this.matches = globalMatches; // ← ÖNCE matches'i ata!
-      this.loadFromFile(); // ← SONRA yükle!
+      this.matches = globalMatches;
+      this.loadFromFile();
     } else {
       this.matches = globalMatches;
     }
@@ -64,47 +65,103 @@ export class FileMatchRepository implements IMatchRepository {
     }
   }
 
+  // ============ BATCH UPDATE METHODS ============
+
   async save(match: Match): Promise<void> {
     this.matches.set(match.id, match);
-    this.saveToFile();
-  }
-
-  async findById(id: number): Promise<Match | null> {
-    const match = this.matches.get(id);
-    return match || null;
-  }
-
-  async findAll(): Promise<Match[]> {
-    return Array.from(this.matches.values());
-  }
-
-  async findByDate(date: string): Promise<Match[]> {
-    return Array.from(this.matches.values()).filter(
-      (match) => match.date === date,
-    );
-  }
-
-  async findLiveMatches(): Promise<Match[]> {
-    const liveMatches = Array.from(this.matches.values()).filter(
-      (match) => match.isLive === true,
-    );
-    return liveMatches;
+    this.saveToFile(); // Save hemen yaz (yeni maç kritik)
   }
 
   async update(match: Match): Promise<void> {
     if (this.matches.has(match.id)) {
-      this.matches.set(match.id, match);
-      this.saveToFile();
+      this.pendingUpdates.set(match.id, match);
+      this.scheduleFlush();
+    }
+  }
+  async upsert(match: Match): Promise<void> {
+    if (this.matches.has(match.id)) {
+      this.pendingUpdates.set(match.id, match);
+      this.scheduleFlush();
     }
   }
 
-  async delete(id: number): Promise<void> {
-    this.matches.delete(id);
+  private scheduleFlush() {
+    if (this.flushScheduled) return;
+    this.flushScheduled = true;
+
+    // Event loop'un bir sonraki tick'inde flush yap
+    setImmediate(() => {
+      this.flush();
+      this.flushScheduled = false;
+    });
+  }
+
+  private flush() {
+    if (this.pendingUpdates.size === 0) return;
+
+    console.log(`💾 Flushing ${this.pendingUpdates.size} updates to file`);
+
+    for (const [id, match] of this.pendingUpdates) {
+      this.matches.set(id, match);
+    }
+    this.pendingUpdates.clear();
     this.saveToFile();
+  }
+
+  async flushNow(): Promise<void> {
+    if (this.pendingUpdates.size > 0) {
+      this.flush();
+      this.flushScheduled = false;
+    }
+  }
+
+  // ============ READ METHODS ============
+
+  async findById(id: number): Promise<Match | null> {
+    // Önce pending update'leri kontrol et
+    if (this.pendingUpdates.has(id)) {
+      return this.pendingUpdates.get(id) || null;
+    }
+    return this.matches.get(id) || null;
+  }
+
+  async findAll(): Promise<Match[]> {
+    // Aktif maçlar + pending update'leri birleştir
+    const allMatches = new Map(this.matches);
+    for (const [id, match] of this.pendingUpdates) {
+      allMatches.set(id, match);
+    }
+    return Array.from(allMatches.values());
+  }
+
+  async findByDate(date: string): Promise<Match[]> {
+    const allMatches = await this.findAll();
+    return allMatches.filter((match) => match.date === date);
+  }
+
+  async findLiveMatches(): Promise<Match[]> {
+    const allMatches = await this.findAll();
+    return allMatches.filter((match) => match.isLive === true);
+  }
+
+  // ============ DELETE METHODS ============
+
+  async delete(id: number): Promise<void> {
+    this.pendingUpdates.delete(id);
+    this.matches.delete(id);
+    this.scheduleFlush();
   }
 
   async clear(): Promise<void> {
     this.matches.clear();
+    this.pendingUpdates.clear();
     this.saveToFile();
+  }
+
+  // ============ UTILITY ============
+
+  async onModuleDestroy() {
+    // Uygulama kapanırken bekleyen tüm güncellemeleri yaz
+    await this.flushNow();
   }
 }

@@ -52,6 +52,12 @@ export interface LeagueGroup {
   matches: Match[];
 }
 
+export interface DateListResponse {
+  date: string;
+  dayName: string;
+  dayNumber: number;
+}
+
 class ApiService {
   private baseURL = "http://localhost:3001";
   private socket: Socket | null = null;
@@ -105,9 +111,7 @@ class ApiService {
     return result.data.groupedByLeague;
   }
 
-  async getDateList(): Promise<
-    { date: string; dayName: string; dayNumber: number }[]
-  > {
+  async getDateList(): Promise<DateListResponse[]> {
     const response = await fetch(`${this.baseURL}/api/fixtures/dates`);
     const result = await response.json();
     return result.success ? result.data : [];
@@ -161,26 +165,30 @@ class ApiService {
         reconnectionDelay: 1000,
       });
 
-      this.socket.on("match-update", (updates: any) => {
-        // Eğer array değilse, array yap
-        const matchesArray = Array.isArray(updates) ? updates : [updates];
-        const hasStats = !!updates.stats;
-        if (hasStats) {
-          console.log("Gelen güncelleme:", {
-            id: updates.id,
-            hasStats: !!updates.stats,
-            minute: updates.minute,
-            stats: updates.stats,
-          });
-        }
+      this.socket.on(
+        "live-matches-update",
+        (payload: {
+          matches: any[];
+          needsRefresh: boolean; // ← YENİ ALAN
+          timestamp: string;
+        }) => {
+          // 1. Canlı maçları formatla ve güncelle
+          const fixedMatches = payload.matches.map((m) => ({
+            ...m,
+            id: m.matchId,
+            minute: m.minute,
+            score: m.score,
+            isLive: m.isLive,
+            stats: m.stats,
+          }));
+          this.updateCallbacks.forEach((cb) => cb(fixedMatches));
 
-        this.updateCallbacks.forEach((cb) => cb(matchesArray));
-      });
-
-      this.socket.on("initial-live-matches", (matches: Match[]) => {
-        console.log("🔴 initial-live-matches ALINDI!", matches?.length, "maç");
-        this.updateCallbacks.forEach((cb) => cb(matches));
-      });
+          // 2. Eğer refresh gerekliyse, tüm canlı maçları yeniden çek
+          if (payload.needsRefresh) {
+            window.dispatchEvent(new CustomEvent("refresh-live-matches"));
+          }
+        },
+      );
 
       this.socket.on("connect", async () => {
         console.log("🔌 WebSocket connected");

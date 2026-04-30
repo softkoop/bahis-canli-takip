@@ -10,12 +10,7 @@ import {
   IonBadge,
   IonMenuButton,
 } from "@ionic/react";
-import {
-  informationCircleOutline,
-  ticketOutline,
-  calendarOutline,
-  starOutline,
-} from "ionicons/icons";
+import { calendarOutline, starOutline } from "ionicons/icons";
 import { useMatches } from "../context/MatchContext";
 import MatchStatsModal from "../components/MatchStatsModal";
 
@@ -42,11 +37,48 @@ const teamColors: Record<string, string> = {
   PSG: "#ef4444",
 };
 
-const TeamLogo: React.FC<{ team: string }> = ({ team }) => {
-  const color = teamColors[team] || "#6b7280";
+// const TeamLogo: React.FC<{ team: string }> = ({ team }) => {
+//   const color = teamColors[team] || "#6b7280";
+//   return (
+//     <div className="team-logo" style={{ backgroundColor: color }}>
+//       {team.slice(0, 2)}
+//     </div>
+//   );
+// };
+// MatchCard.tsx
+
+const TeamLogo: React.FC<{ team: any }> = ({ team }) => {
+  const [imageError, setImageError] = useState(false);
+
+  // ⭐ Logo URL'sini oluştur (eğer ID ise)
+  const getLogoUrl = (logo: string): string => {
+    if (logo.startsWith("http")) return logo;
+    // ID ise URL'ye çevir
+    return `https://media.api-sports.io/football/teams/${logo}.png`;
+  };
+
+  const logoUrl = getLogoUrl(team.logo);
+
+  if (!imageError) {
+    return (
+      <img
+        src={logoUrl}
+        alt={team.fullName}
+        className="team-logo-img"
+        onError={() => setImageError(true)}
+        style={{ width: "32px", height: "32px", objectFit: "contain" }}
+      />
+    );
+  }
+
+  // Fallback: renkli kutu
+  const teamCode =
+    team.shortName || team.fullName.substring(0, 3).toUpperCase();
+  const color = teamColors[teamCode] || "#6b7280";
+
   return (
     <div className="team-logo" style={{ backgroundColor: color }}>
-      {team.slice(0, 2)}
+      {teamCode.substring(0, 2)}
     </div>
   );
 };
@@ -79,25 +111,206 @@ const LiveClock: React.FC = () => {
   );
 };
 
+// const MatchCard: React.FC<{ match: any }> = ({ match }) => {
+//   const {
+//     getMatchGreenState,
+//     getMatchingFilterItems,
+//     firstHalfFilters,
+//     secondHalfFilters,
+//     trackedMatchIds, // ← Takip edilen maç ID'leri
+//     toggleTrackMatch,
+//   } = useMatches();
+//   const [showModal, setShowModal] = useState(false);
+
+//   const greenState = getMatchGreenState(match.id);
+//   const matchingItems = getMatchingFilterItems(match);
+
+//   const currentMinute = match.stats?.matchDuration || 0;
+//   const isFirstHalf = currentMinute <= 45;
+//   const currentFilters = isFirstHalf ? firstHalfFilters : secondHalfFilters;
+
+//   const isTracked = trackedMatchIds.includes(match.id); // ← Yıldız aktif mi?
+
+//   const hasActiveFilters =
+//     currentFilters.totalPlay !== 50 ||
+//     currentFilters.totalShot !== 1 ||
+//     currentFilters.accurateShot !== 1 ||
+//     currentFilters.dangerousAttack !== 1 ||
+//     currentFilters.totalCorner !== 1 ||
+//     currentFilters.duration !== 1;
+
+//   const getFilterBoxContent = () => {
+//     if (!match.isLive) {
+//       return (
+//         <div className="empty-box">
+//           <span>Maç başlamadı</span>
+//         </div>
+//       );
+//     }
+
+//     if (!hasActiveFilters) {
+//       return (
+//         <div className="empty-box">
+//           <span>Filtre seçiniz</span>
+//         </div>
+//       );
+//     }
+
+//     if (greenState.showGoalAnimation) {
+//       return (
+//         <div className="goal-animation-container">
+//           <span className="goal-text">⚽ GOL ⚽</span>
+//         </div>
+//       );
+//     }
+
+//     if (greenState.isGreenActive) {
+//       return <div className="green-active-box"></div>;
+//     }
+
+//     return (
+//       <div className="empty-box">
+//         <span>Filtre değerleri tutmuyor</span>
+//       </div>
+//     );
+//   };
+
+//   const getBoxClassName = () => {
+//     if (!match.isLive || !hasActiveFilters) return "filter-value-box";
+//     if (greenState.showGoalAnimation) return "filter-value-box goal-animation";
+//     if (greenState.isGreenActive) return "filter-value-box active";
+//     return "filter-value-box";
+//   };
+
+//   return (
+//     <>
+//       <div
+//         className="match-card-wrapper"
+//         onClick={() => match.isLive && match.stats && setShowModal(true)}
+//         style={{ cursor: match.isLive && match.stats ? "pointer" : "default" }}
+//       >
+//         {match.league && (
+//           <div className="league-header">
+//             <div className="league-info">
+//               <IonIcon icon={starOutline} className="star-icon" />
+//               <span className="league-flag">{match.flag}</span>
+//               <span className="league-name">{match.league}</span>
+//             </div>
+//             <div className="league-odds">
+//               <span>{match.odds["1"]}</span>
+//               <span>{match.odds.X}</span>
+//               <span>{match.odds["2"]}</span>
+//             </div>
+//           </div>
+//         )}
+
+//         <div className={`match-card ${match.league ? "with-league" : ""}`}>
+//           <div className="time-column">
+//             {match.isLive && (
+//               <>
+//                 <IonIcon
+//                   icon={starOutline}
+//                   className={`star-icon ${isTracked ? "active" : ""}`}
+//                   onClick={(e) => {
+//                     e.stopPropagation(); // Kartın tıklanmasını engelle
+//                     toggleTrackMatch(match.id);
+//                   }}
+//                   style={{
+//                     color: isTracked ? "#ffc107" : "#6c757d",
+//                     cursor: "pointer",
+//                     fontSize: "20px",
+//                   }}
+//                 />
+//                 <div className="live-dot"></div>
+//                 <div className="live-minute">{match.minute || 45}'</div>
+//               </>
+//             )}
+//             {!match.isLive && (
+//               <>
+//                 <span className="match-time">{match.time}</span>
+//               </>
+//             )}
+//           </div>
+
+//           <div className="teams-column">
+//             {match.homeTeam.name && (
+//               <div className="team-row">
+//                 <TeamLogo team={match.homeTeam} />
+//                 <span className="team-name">
+//                   {match.homeTeam.shortName || match.homeTeam.name}
+//                 </span>
+//                 {match.score && (
+//                   <span className="team-score">{match.score.home}</span>
+//                 )}
+//               </div>
+//             )}
+//             {match.awayTeam.name && (
+//               <div className="team-row">
+//                 <TeamLogo team={match.awayTeam} />
+//                 <span className="team-name">
+//                   {match.awayTeam.shortName || match.awayTeam.name}
+//                 </span>
+//                 {match.score && (
+//                   <span className="team-score">{match.score.away}</span>
+//                 )}
+//               </div>
+//             )}
+//           </div>
+
+//           <div className={getBoxClassName()}>{getFilterBoxContent()}</div>
+//         </div>
+
+//         {match.league && (
+//           <div className="progress-bar">
+//             <div className="progress-yellow"></div>
+//             <div className="progress-red"></div>
+//             <div className="progress-red"></div>
+//           </div>
+//         )}
+//       </div>
+
+//       <MatchStatsModal
+//         isOpen={showModal}
+//         onClose={() => setShowModal(false)}
+//         match={match}
+//       />
+//     </>
+//   );
+// };
 const MatchCard: React.FC<{ match: any }> = ({ match }) => {
   const {
     getMatchGreenState,
-    getMatchingFilterItems,
     firstHalfFilters,
     secondHalfFilters,
-    trackedMatchIds, // ← Takip edilen maç ID'leri
+    trackedMatchIds,
     toggleTrackMatch,
   } = useMatches();
   const [showModal, setShowModal] = useState(false);
+  const [hasEverReceivedData, setHasEverReceivedData] = useState(false); // ← isim değişti
 
   const greenState = getMatchGreenState(match.id);
-  const matchingItems = getMatchingFilterItems(match);
-
   const currentMinute = match.stats?.matchDuration || 0;
   const isFirstHalf = currentMinute <= 45;
   const currentFilters = isFirstHalf ? firstHalfFilters : secondHalfFilters;
+  const isTracked = trackedMatchIds.includes(match.id);
 
-  const isTracked = trackedMatchIds.includes(match.id); // ← Yıldız aktif mi?
+  // Stats var mı? (undefined veya null değilse)
+  const hasStats = match.stats !== undefined && match.stats !== null;
+
+  // Veri geldi mi? (stats olsun veya olmasın, API cevap verdi mi?)
+  // Bunu anlamak için match'in herhangi bir canlı verisi var mı kontrol et
+  const hasReceivedData =
+    match.isLive && (match.minute !== undefined || match.score !== undefined);
+
+  useEffect(() => {
+    if (hasReceivedData && !hasEverReceivedData) {
+      setHasEverReceivedData(true);
+    }
+  }, [hasReceivedData, hasEverReceivedData]);
+
+  // Sadece veri geldikten SONRA ve stats yoksa hata göster
+  const showNoStats =
+    isTracked && hasEverReceivedData && !hasStats && match.isLive;
 
   const hasActiveFilters =
     currentFilters.totalPlay !== 50 ||
@@ -108,6 +321,14 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
     currentFilters.duration !== 1;
 
   const getFilterBoxContent = () => {
+    if (showNoStats) {
+      return (
+        <div className="stats-error-box">
+          <span className="stats-error-icon">⚠️</span>
+          <span className="stats-error-text">İstatistik bulunamadı</span>
+        </div>
+      );
+    }
     if (!match.isLive) {
       return (
         <div className="empty-box">
@@ -115,7 +336,6 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
         </div>
       );
     }
-
     if (!hasActiveFilters) {
       return (
         <div className="empty-box">
@@ -123,7 +343,6 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
         </div>
       );
     }
-
     if (greenState.showGoalAnimation) {
       return (
         <div className="goal-animation-container">
@@ -131,11 +350,9 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
         </div>
       );
     }
-
     if (greenState.isGreenActive) {
       return <div className="green-active-box"></div>;
     }
-
     return (
       <div className="empty-box">
         <span>Filtre değerleri tutmuyor</span>
@@ -144,10 +361,16 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
   };
 
   const getBoxClassName = () => {
+    if (showNoStats) return "filter-value-box stats-error";
     if (!match.isLive || !hasActiveFilters) return "filter-value-box";
     if (greenState.showGoalAnimation) return "filter-value-box goal-animation";
     if (greenState.isGreenActive) return "filter-value-box active";
     return "filter-value-box";
+  };
+
+  const handleStarClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    toggleTrackMatch(match.id);
   };
 
   return (
@@ -179,50 +402,34 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
                 <IonIcon
                   icon={starOutline}
                   className={`star-icon ${isTracked ? "active" : ""}`}
-                  onClick={(e) => {
-                    e.stopPropagation(); // Kartın tıklanmasını engelle
-                    toggleTrackMatch(match.id);
-                  }}
-                  style={{
-                    color: isTracked ? "#ffc107" : "#6c757d",
-                    cursor: "pointer",
-                    fontSize: "20px",
-                  }}
+                  onClick={handleStarClick}
                 />
                 <div className="live-dot"></div>
                 <div className="live-minute">{match.minute || 45}'</div>
               </>
             )}
-            {!match.isLive && (
-              <>
-                <span className="match-time">{match.time}</span>
-              </>
-            )}
+            {!match.isLive && <span className="match-time">{match.time}</span>}
           </div>
 
           <div className="teams-column">
-            {match.homeTeam.name && (
-              <div className="team-row">
-                <TeamLogo team={match.homeTeam.logo} />
-                <span className="team-name">
-                  {match.homeTeam.shortName || match.homeTeam.name}
-                </span>
-                {match.score && (
-                  <span className="team-score">{match.score.home}</span>
-                )}
-              </div>
-            )}
-            {match.awayTeam.name && (
-              <div className="team-row">
-                <TeamLogo team={match.awayTeam.logo} />
-                <span className="team-name">
-                  {match.awayTeam.shortName || match.awayTeam.name}
-                </span>
-                {match.score && (
-                  <span className="team-score">{match.score.away}</span>
-                )}
-              </div>
-            )}
+            <div className="team-row">
+              <TeamLogo team={match.homeTeam} />
+              <span className="team-name">
+                {match.homeTeam.shortName || match.homeTeam.name}
+              </span>
+              {match.score && (
+                <span className="team-score">{match.score.home}</span>
+              )}
+            </div>
+            <div className="team-row">
+              <TeamLogo team={match.awayTeam} />
+              <span className="team-name">
+                {match.awayTeam.shortName || match.awayTeam.name}
+              </span>
+              {match.score && (
+                <span className="team-score">{match.score.away}</span>
+              )}
+            </div>
           </div>
 
           <div className={getBoxClassName()}>{getFilterBoxContent()}</div>
@@ -245,7 +452,6 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
     </>
   );
 };
-
 const Home: React.FC = () => {
   const {
     groupedMatches,

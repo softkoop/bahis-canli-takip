@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Cron } from '@nestjs/schedule';
 import { ApiFootballFixtureAdapter } from '../adapters/api-football-fixture.adapter';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class FixtureSchedulerService {
   constructor(private readonly fixtureProvider: ApiFootballFixtureAdapter) {}
 
   // Her gün saat 12:00'de çalışır
-  @Cron(CronExpression.EVERY_DAY_AT_NOON)
+  @Cron('0 3 * * *')
   async refreshWeeklyFixtures() {
     console.log('🔄 Günlük fikstür güncelleme başladı...');
     try {

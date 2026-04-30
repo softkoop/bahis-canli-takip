@@ -114,8 +114,6 @@ export class FootballApplicationService {
       const paginatedMatches = matches.slice(start, end);
 
       const frontendMatches = this.frontendMapper.mapMatches(paginatedMatches);
-      const leagueGroups =
-        this.frontendMapper.mapLeagueGroups(paginatedMatches);
 
       return this.responseMapper.paginated(
         frontendMatches,

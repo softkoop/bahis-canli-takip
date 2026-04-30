@@ -1,12 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { patchNestjsSwagger } from '@anatine/zod-nestjs';
+import { AppLogger } from './shared/logger/app-logger.service';
 
 async function bootstrap() {
-  const logger = new Logger('Bootstrap');
-  const app = await NestFactory.create(AppModule);
+  const logger = new AppLogger('Bootstrap');
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true, // Logger hazır olana kadar logları buffer'la
+  });
+
+  app.useLogger(logger);
 
   // Zod patch'ini uygula
   patchNestjsSwagger();
@@ -42,4 +46,4 @@ async function bootstrap() {
   logger.log(`📚 Swagger documentation: http://localhost:${port}/docs`);
   logger.log(`🔌 WebSocket endpoint: ws://localhost:${port}/live`);
 }
-bootstrap();
+void bootstrap();

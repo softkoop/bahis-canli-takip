@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TeamStats, TeamStatsSchema } from './team-stats.entity';
+import { TeamStats, TeamStatsSchema } from './team-stats.value-objects';
 
 export const MatchHalfEnum = z.enum(['first', 'second']);
 export type MatchHalf = z.infer<typeof MatchHalfEnum>;

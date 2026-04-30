@@ -393,6 +393,31 @@ ion-toolbar ion-menu-button {
   color: #9ca3af;
 }
 
+/* Track edilen yıldız - komple yeşil/sarı + parlama efekti */
+.star-icon.active {
+  color: #ffc107 !important; /* Sarı renk - !important ile override et */
+  filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.8));
+  animation: starPulse 1.5s ease-in-out infinite;
+}
+
+/* Parlama animasyonu */
+@keyframes starPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(255, 193, 7, 0.4));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.9));
+    transform: scale(1.1);
+  }
+}
+
+/* Hover efekti */
+.star-icon:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
 .league-flag {
   font-size: 18px;
 }
@@ -1664,3 +1689,164 @@ ion-menu.custom-menu .menu-inner {
   border-radius: 8px;
 }
 
+/* Stats Error Box */
+.filter-value-box.stats-error {
+  background: linear-gradient(135deg, #2d1f1f 0%, #1a1a1a 100%);
+  border: 1px solid #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+  animation: errorPulse 1s ease-in-out infinite;
+}
+
+.stats-error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.stats-error-icon {
+  font-size: 18px;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.stats-error-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ff6666;
+}
+
+.stats-error-subtext {
+  font-size: 8px;
+  color: #ff9999;
+  animation: fadeInOut 2s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%, 100% {
+    border-color: #ff4444;
+    box-shadow: 0 0 5px rgba(255, 68, 68, 0.3);
+  }
+  50% {
+    border-color: #ff8888;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.6);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Bekleme modu */
+.filter-value-box.waiting {
+  background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2a 100%);
+  border: 1px solid #ffc107;
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+  animation: waitingPulse 1.5s ease-in-out infinite;
+}
+
+.waiting-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.waiting-spinner {
+  font-size: 20px;
+  animation: spin 1s linear infinite;
+}
+
+.waiting-text {
+  font-size: 10px;
+  font-weight: bold;
+  color: #ffc107;
+}
+
+@keyframes waitingPulse {
+  0%, 100% {
+    border-color: #ffc107;
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
+  }
+  50% {
+    border-color: #ffdf7e;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Yeni stiller */
+.stats-values-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.stats-value {
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: center;
+}
+
+.stats-value.home-value {
+  color: var(--home-color, #3b82f6);
+}
+
+.stats-value.away-value {
+  color: var(--away-color, #ef4444);
+}
+
+.stats-bar-wrapper {
+  flex: 1;
+}
+
+.stats-bar-container {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #e5e7eb;
+}
+
+.home-stats-bar {
+  background-color: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+.away-stats-bar {
+  background-color: #ef4444;
+  transition: width 0.3s ease;
+}
+
+/* Eski yüzde gösterimini kaldır */
+.stats-percent {
+  display: none;
+}
+
+/* Legend renkleri */
+.home-legend {
+  background-color: #3b82f6;
+}
+
+.away-legend {
+  background-color: #ef4444;
+}
