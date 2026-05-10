@@ -1,3 +1,4 @@
+// App.tsx - AYNI, DEĞİŞMESİN
 import React, { useEffect } from "react";
 import {
   IonApp,
@@ -8,7 +9,6 @@ import {
 import { IonReactRouter } from "@ionic/react-router";
 import { Route, Redirect } from "react-router-dom";
 
-/* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
@@ -20,7 +20,6 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
-/* Theme variables */
 import "./theme/variables.css";
 import "./theme/global.css";
 
@@ -32,10 +31,8 @@ import Menu from "./components/Menu";
 import Stats from "./pages/Stats";
 import { MatchProvider } from "./context/MatchContext";
 
-// ⚠️ IMPORTANT: setupIonicReact mutlaka çağrılmalı!
 setupIonicReact();
 
-// Protected Route wrapper
 const ProtectedRoute: React.FC<{
   component: React.ComponentType;
   path: string;
@@ -58,7 +55,6 @@ const ProtectedRoute: React.FC<{
   );
 };
 
-// Ana uygulama içeriği (auth context içinde)
 const AppContent: React.FC = () => {
   const { isAuthenticated, loading } = useAuth();
 
@@ -88,7 +84,6 @@ const AppContent: React.FC = () => {
   );
 };
 
-// Ana App
 const App: React.FC = () => {
   useEffect(() => {
     document.body.classList.add("dark");

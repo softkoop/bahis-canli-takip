@@ -30,10 +30,6 @@ ion-menu-button::part(icon) {
   color: white !important;
 }
 
-ion-menu-button::part(native) {
-  background: transparent !important;
-}
-
 ion-toolbar ion-button,
 ion-toolbar ion-menu-button {
   --background: transparent !important;
@@ -44,10 +40,7 @@ ion-toolbar ion-menu-button {
 /* LOGIN SAYFASI STILLERI */
 /* -------------------- */
 
-.login-page {
-  --background: #000000;
-}
-
+.login-page,
 .login-content {
   --background: #000000;
 }
@@ -84,8 +77,7 @@ ion-toolbar ion-menu-button {
   color: white;
   font-size: 24px;
   font-weight: 700;
-  margin-top: 16px;
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
   text-align: center;
 }
 
@@ -109,8 +101,6 @@ ion-toolbar ion-menu-button {
   --color: #9ca3af !important;
   --color-focused: #22c55e !important;
   font-size: 14px !important;
-  margin-bottom: 4px !important;
-  transform: translateY(0) !important;
 }
 
 .login-input-icon {
@@ -118,24 +108,10 @@ ion-toolbar ion-menu-button {
   font-size: 20px;
 }
 
-
-/* Input alanı */
 .login-input {
   --color: white !important;
   --placeholder-color: #6b7280 !important;
-  --padding-top: 8px !important;
-  --padding-bottom: 8px !important;
   font-size: 16px !important;
-}
-
-/* Input focus durumunda label rengi */
-.login-input-item.item-has-focus .login-input-label {
-  color: #22c55e !important;
-}
-
-/* Input doluysa label yukarıda kalır */
-.login-input-item.item-has-value .login-input-label {
-  transform: translateY(0) !important;
 }
 
 .login-error {
@@ -155,11 +131,6 @@ ion-toolbar ion-menu-button {
   height: 48px;
 }
 
-.login-button:disabled {
-  --background: #4b5563;
-  opacity: 0.6;
-}
-
 .login-demo {
   display: block;
   text-align: center;
@@ -172,27 +143,14 @@ ion-toolbar ion-menu-button {
 /* MATCHES/HOME SAYFASI STILLERI */
 /* -------------------- */
 
-.matches-page {
+.matches-page,
+.matches-content {
   --background: #000000;
 }
 
 .custom-header {
   background: #000000;
   padding-top: 8px;
-}
-
-.status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 16px;
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-.status-icons {
-  display: flex;
-  gap: 8px;
 }
 
 .main-header {
@@ -202,66 +160,20 @@ ion-toolbar ion-menu-button {
   padding: 8px 16px;
 }
 
-.menu-button,
-.info-button {
-  --color: white;
-  --padding-start: 0;
-  --padding-end: 0;
-  margin: 0;
-  font-size: 24px;
-}
-
-.search-wrapper {
-  flex: 1;
-}
-
 .custom-searchbar {
   --background: #1f2937;
   --color: white;
   --placeholder-color: #9ca3af;
-  --icon-color: #9ca3af;
   --border-radius: 12px;
   --box-shadow: none;
-  padding: 0;
 }
 
-.ticket-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-}
-
-.ticket-box ion-icon {
-  font-size: 24px;
-}
-
-.ticket-amount {
-  font-size: 10px;
-  color: #9ca3af;
-}
-
-.matches-content {
-  --background: #000000;
-  --padding-start: 0;
-  --padding-end: 0;
-}
-
-/* Date Selector */
 .date-selector {
   display: flex;
   align-items: center;
   background: #1f2937;
   margin: 8px 16px;
   border-radius: 12px;
-  width: auto;
-}
-
-.calendar-button {
-  --color: #9ca3af;
-  margin: 0;
-  --padding-start: 12px;
-  --padding-end: 12px;
 }
 
 .dates-scroll {
@@ -307,7 +219,14 @@ ion-toolbar ion-menu-button {
   color: white;
 }
 
-/* Live Button */
+.live-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 12px;
+}
+
 .live-button {
   display: flex;
   align-items: center;
@@ -317,10 +236,9 @@ ion-toolbar ion-menu-button {
   border: none;
   border-radius: 24px;
   padding: 8px 20px;
-  margin: 8px 16px;
   cursor: pointer;
   transition: all 0.2s ease;
-  width: auto;
+  flex-shrink: 0;
 }
 
 .live-button-text {
@@ -351,7 +269,37 @@ ion-toolbar ion-menu-button {
   --color: #ef4444;
 }
 
-.live-button:hover {
+/* Canlı butonu aktif */
+.live-button.active {
+  background: #22c55e;
+}
+
+.live-button.active .live-button-text {
+  color: white;
+}
+
+.live-button.active .live-badge {
+  --background: white;
+  --color: #ef4444;
+}
+
+/* Takip butonu aktif */
+.filter-button.tracked-button.active {
+  background: #eab308;
+}
+
+.filter-button.tracked-button.active .filter-button-text {
+  color: white;
+}
+
+.filter-button.tracked-button.active .filter-badge {
+  --background: white;
+  --color: #eab308;
+}
+
+/* Hover efektleri */
+.live-button:hover,
+.filter-button.tracked-button:hover {
   background: #374151;
 }
 
@@ -359,15 +307,39 @@ ion-toolbar ion-menu-button {
   background: #16a34a;
 }
 
-/* Match Cards */
+.filter-button.tracked-button.active:hover {
+  background: #ca8a04;
+}
+
+.live-clock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1f2937;
+  padding: 6px 12px;
+  border-radius: 24px;
+  border: 1px solid #374151;
+  flex-shrink: 0;
+}
+
+.live-clock-icon {
+  font-size: 14px;
+  animation: pulse 1.5s infinite;
+}
+
+.live-clock-time {
+  font-size: 14px;
+  font-weight: 600;
+  color: #22c55e;
+  font-family: monospace;
+}
+
 .matches-list {
   padding: 0 16px 100px 16px;
-  width: auto;
 }
 
 .match-card-wrapper {
   margin-bottom: 8px;
-  width: 100%;
   cursor: pointer;
 }
 
@@ -376,9 +348,7 @@ ion-toolbar ion-menu-button {
   justify-content: space-between;
   align-items: center;
   background: #1f2937;
-  padding: 4px 12px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 8px 12px;
   border-radius: 12px 12px 0 0;
 }
 
@@ -388,19 +358,48 @@ ion-toolbar ion-menu-button {
   gap: 8px;
 }
 
-.star-icon {
-  font-size: 20px;
-  color: #9ca3af;
+.league-flag {
+  font-size: 18px;
 }
 
-/* Track edilen yıldız - komple yeşil/sarı + parlama efekti */
+.league-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: white !important;
+}
+
+.league-odds {
+  display: flex;
+  gap: 12px;
+}
+
+.league-odds span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #d1d5db;
+  background: #374151;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.star-icon {
+  font-size: 20px;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 .star-icon.active {
-  color: #ffc107 !important; /* Sarı renk - !important ile override et */
+  color: #ffc107 !important;
   filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.8));
   animation: starPulse 1.5s ease-in-out infinite;
 }
 
-/* Parlama animasyonu */
+.star-icon:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
+
 @keyframes starPulse {
   0%, 100% {
     filter: drop-shadow(0 0 2px rgba(255, 193, 7, 0.4));
@@ -412,51 +411,16 @@ ion-toolbar ion-menu-button {
   }
 }
 
-/* Hover efekti */
-.star-icon:hover {
-  transform: scale(1.2);
-  transition: transform 0.2s ease;
-}
-
-.league-flag {
-  font-size: 18px;
-}
-
-.league-name {
-  font-weight: 600;
-  font-size: 12px;
-  color: white;
-}
-
-.league-odds {
-  display: flex;
-  gap: 16px;
-}
-
-.league-odds span {
-  width: 40px;
-  text-align: right;
-  color: #d1d5db;
-  font-size: 12px;
-}
-
 .match-card {
   display: flex;
   background: #1f2937;
-  overflow: hidden;
   width: 100%;
-  box-sizing: border-box;
-}
-
-.match-card.with-league {
-  border-radius: 0;
 }
 
 .match-card:not(.with-league) {
   border-radius: 12px;
 }
 
-/* Time Column */
 .time-column {
   width: 55px;
   background: #374151;
@@ -482,27 +446,20 @@ ion-toolbar ion-menu-button {
   font-weight: bold;
 }
 
-.star-icon-small {
-  font-size: 16px;
-  color: #9ca3af;
-  margin: 4px 0;
-}
-
 .match-time {
   font-size: 12px;
   color: #d1d5db;
 }
 
-/* Teams Column */
 .teams-column {
   flex: 1;
-  padding: 8px 8px;
+  padding: 8px;
 }
 
 .team-row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   margin-bottom: 6px;
 }
 
@@ -523,6 +480,12 @@ ion-toolbar ion-menu-button {
   flex-shrink: 0;
 }
 
+.team-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
 .team-name {
   font-size: 14px;
   color: white;
@@ -535,7 +498,6 @@ ion-toolbar ion-menu-button {
   color: #22c55e;
 }
 
-/* Filter Value Box */
 .filter-value-box {
   width: 110px;
   min-height: 80px;
@@ -561,48 +523,114 @@ ion-toolbar ion-menu-button {
   border-color: #22c55e;
 }
 
-.filter-value-box.active .filter-values-list {
-  color: white;
-}
-
-.filter-value-box.active .filter-value-label {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.filter-value-box.active .filter-value-number {
-  color: white;
-  font-weight: bold;
-}
-
-.filter-values-list {
+.green-active-box {
   width: 100%;
-  padding: 8px;
+  height: 100%;
+  min-height: 60px;
+  background: #22c55e;
+  border-radius: 8px;
+}
+
+.filter-value-box.goal-animation {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.3), transparent);
+  animation: crossShine 1s linear infinite;
+}
+
+.goal-animation-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: goalPulse 0.5s ease-in-out infinite alternate;
+}
+
+.goal-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ef4444;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: goalShake 0.3s ease-in-out infinite;
+}
+
+@keyframes goalPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+@keyframes goalShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes crossShine {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.filter-value-box.stats-error {
+  background: linear-gradient(135deg, #2d1f1f 0%, #1a1a1a 100%);
+  border: 1px solid #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+  animation: errorPulse 1s ease-in-out infinite;
+}
+
+.stats-error-box {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.filter-value-item {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+.stats-error-icon {
+  font-size: 18px;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.stats-error-text {
   font-size: 10px;
+  font-weight: bold;
+  color: #ff6666;
 }
 
-.filter-value-label {
-  color: #9ca3af;
+.stats-error-subtext {
+  font-size: 8px;
+  color: #ff9999;
+  animation: fadeInOut 2s ease-in-out infinite;
 }
 
-.filter-value-number {
-  color: #22c55e;
-  font-weight: 600;
+@keyframes errorPulse {
+  0%, 100% {
+    border-color: #ff4444;
+    box-shadow: 0 0 5px rgba(255, 68, 68, 0.3);
+  }
+  50% {
+    border-color: #ff8888;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.6);
+  }
 }
 
-/* Progress Bar */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
 .progress-bar {
   display: flex;
   height: 4px;
-  margin-top: 2px;
   width: 100%;
   border-radius: 0 0 12px 12px;
   overflow: hidden;
@@ -618,7 +646,6 @@ ion-toolbar ion-menu-button {
   background: #ef4444;
 }
 
-/* Loading & No Matches */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -640,531 +667,11 @@ ion-toolbar ion-menu-button {
 }
 
 /* -------------------- */
-/* STATS SAYFASI STILLERI */
-/* -------------------- */
-
-.stats-page {
-  --background: #000000;
-}
-
-.stats-header {
-  --background: #000000;
-  --color: white;
-  --border-style: none;
-  border-bottom: 1px solid #1f2937;
-}
-
-.stats-header ion-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-}
-
-.stats-content {
-  --background: #000000;
-  --padding-start: 0;
-  --padding-end: 0;
-  --padding-top: 0;
-}
-
-.stats-card {
-  background: #1f2937;
-  border-radius: 12px;
-  margin: 0 16px 12px 16px;
-  box-shadow: none;
-  width: auto;
-}
-
-.stats-card ion-card-content {
-  padding: 16px;
-}
-
-.filter-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-  color: white;
-}
-
-.filter-title ion-icon {
-  font-size: 20px;
-  color: #22c55e;
-}
-
-.filter-title ion-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  margin: 0;
-}
-
-/* IonRange Styles */
-.filter-range {
-  --knob-background: #22c55e;
-  --knob-size: 22px;
-  --bar-height: 8px;
-  --bar-background: #374151;
-  --bar-background-active: #22c55e;
-  padding: 12px 0;
-}
-
-.filter-range::part(track) {
-  height: 8px;
-  border-radius: 4px;
-}
-
-.filter-range::part(track-active) {
-  background: #22c55e;
-  height: 8px;
-  border-radius: 4px;
-}
-
-.filter-range::part(knob) {
-  width: 22px;
-  height: 22px;
-  background: #22c55e;
-  box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
-}
-
-.range-min,
-.range-max {
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  color: white !important;
-  background: #1f2937;
-  padding: 4px 12px;
-  border-radius: 20px;
-  min-width: 50px;
-  text-align: center;
-}
-
-.current-value {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 16px;
-  padding: 10px 16px;
-  background: #2d3748;
-  border-radius: 12px;
-  border-left: 3px solid #22c55e;
-}
-
-.current-value-label {
-  font-size: 13px;
-  font-weight: 500;
-  color: #9ca3af;
-}
-
-.current-value-number {
-  font-size: 20px;
-  font-weight: 700;
-  color: #22c55e;
-  background: #1f2937;
-  padding: 4px 16px;
-  border-radius: 24px;
-  min-width: 70px;
-  text-align: center;
-}
-
-/* Half Segment */
-.half-segment {
-  --background: #374151;
-  --indicator-color: #22c55e;
-  border-radius: 8px;
-}
-
-.half-segment ion-segment-button {
-  --color: #9ca3af;
-  --color-checked: white;
-  --indicator-color: #22c55e;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* Sound Options */
-.sound-options {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
-
-.sound-chip {
-  --background: #374151;
-  --color: #9ca3af;
-  padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 24px;
-}
-
-.sound-chip[color="success"] {
-  --background: #22c55e;
-  --color: white;
-}
-
-.sound-chip[color="danger"] {
-  --background: #ef4444;
-  --color: white;
-}
-
-/* Filter Buttons */
-.filter-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0 16px 32px 16px;
-  margin: 0;
-}
-
-.reset-button,
-.apply-button {
-  --border-radius: 12px;
-  margin: 0;
-  height: 52px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.reset-button {
-  --border-color: #4b5563;
-  --color: #9ca3af;
-}
-
-.apply-button {
-  --background: #22c55e;
-  --background-hover: #16a34a;
-  --color: white;
-}
-
-/* -------------------- */
-/* SETTINGS SAYFASI STILLERI */
-/* -------------------- */
-
-.settings-page {
-  --background: #000000;
-}
-
-.settings-header {
-  --background: #000000;
-  --color: white;
-  --border-style: none;
-  border-bottom: 1px solid #1f2937;
-}
-
-.settings-header ion-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-}
-
-.settings-content {
-  --background: #000000;
-  --padding-start: 0;
-  --padding-end: 0;
-  --padding-top: 0;
-}
-
-.settings-card {
-  background: #1f2937;
-  border-radius: 12px;
-  margin: 0 16px 12px 16px;
-  box-shadow: none;
-  width: auto;
-}
-
-.settings-card ion-card-content {
-  padding: 16px;
-}
-
-/* Profile Section */
-.profile-section {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.profile-avatar {
-  width: 64px;
-  height: 64px;
-  border: 2px solid #22c55e;
-}
-
-.profile-info h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-}
-
-.profile-info p {
-  margin: 4px 0;
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-.profile-role {
-  font-size: 11px;
-}
-
-.settings-section-title {
-  margin: 0 0 12px 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #22c55e;
-}
-
-.settings-section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.settings-item {
-  --background: transparent;
-  --color: white;
-  --padding-start: 0;
-  --padding-end: 0;
-  margin-bottom: 12px;
-}
-
-.settings-item ion-icon {
-  color: #22c55e;
-  font-size: 20px;
-  margin-right: 12px;
-}
-
-.settings-item ion-label {
-  font-size: 14px;
-  color: white;
-}
-
-/* User List */
-.user-list {
-  background: transparent;
-}
-
-.user-item {
-  --background: #374151;
-  --border-radius: 8px;
-  margin-bottom: 8px;
-  padding: 4px 12px;
-}
-
-.user-avatar-small {
-  width: 40px;
-  height: 40px;
-}
-
-.user-item h3 {
-  font-size: 14px;
-  font-weight: 600;
-  color: white;
-  margin: 0;
-}
-
-.user-item p {
-  font-size: 11px;
-  color: #9ca3af;
-  margin: 2px 0;
-}
-
-.user-email {
-  font-size: 10px;
-}
-
-/* Logout & Save Sections */
-.logout-section {
-  padding: 0 16px 16px 16px;
-}
-
-.logout-button {
-  --border-color: #ef4444;
-  --color: #ef4444;
-  --border-radius: 12px;
-  margin: 0;
-  height: 48px;
-}
-
-.save-section {
-  padding: 0 16px 32px 16px;
-}
-
-.save-button {
-  --background: #22c55e;
-  --background-hover: #16a34a;
-  --border-radius: 12px;
-  margin: 0;
-  height: 48px;
-}
-
-/* -------------------- */
-/* MENU STILLERI */
-/* -------------------- */
-
-.custom-menu {
-  --background: #000000;
-  --width: 240px;
-}
-
-.split-pane-visible > .split-pane-side {
-  min-width: 240px !important;
-  max-width: 240px !important;
-}
-
-ion-menu.custom-menu .menu-inner {
-  width: 240px !important;
-}
-
-.menu-header {
-  --background: #000000;
-  --border-style: none;
-  padding: 20px 16px 16px 16px;
-  border-bottom: 1px solid #1f2937;
-}
-
-.menu-header-content {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.menu-avatar {
-  width: 56px;
-  height: 56px;
-  border: 2px solid #22c55e;
-}
-
-.menu-avatar ion-img {
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.menu-user-info h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-}
-
-.menu-user-info p {
-  margin: 4px 0 0 0;
-  font-size: 12px;
-  color: #9ca3af;
-}
-
-.menu-content {
-  --background: #000000;
-  --padding-bottom: 20px;
-}
-
-.menu-list {
-  background: transparent;
-  padding: 8px 0;
-}
-
-.menu-item {
-  --background: transparent;
-  --background-hover: #1f2937;
-  --background-focused: #1f2937;
-  --background-activated: #1f2937;
-  --color: #9ca3af;
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --padding-top: 12px;
-  --padding-bottom: 12px;
-  margin: 0;
-  --min-height: 48px;
-}
-
-.menu-icon {
-  color: #9ca3af;
-  font-size: 22px;
-  margin-right: 12px;
-}
-
-.menu-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #9ca3af;
-}
-
-.menu-item[aria-current="page"] {
-  --background: #1f2937;
-  border-left: 3px solid #22c55e;
-}
-
-.menu-item[aria-current="page"] .menu-icon {
-  color: #22c55e;
-}
-
-.menu-item[aria-current="page"] .menu-label {
-  color: white;
-}
-
-.menu-divider {
-  height: 1px;
-  background: #1f2937;
-  margin: 12px 16px;
-}
-
-.logout-item {
-  margin-top: 8px;
-}
-
-.logout-icon {
-  color: #ef4444;
-  font-size: 22px;
-  margin-right: 12px;
-}
-
-.logout-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #ef4444;
-}
-
-.menu-footer {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
-.menu-version {
-  font-size: 11px;
-  color: #4b5563;
-  letter-spacing: 0.5px;
-}
-
-/* Scrollbar */
-.menu-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.menu-content::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-.menu-content::-webkit-scrollbar-thumb {
-  background: #22c55e;
-  border-radius: 4px;
-}
-
-/* -------------------- */
 /* MODAL STILLERI */
 /* -------------------- */
 
 .stats-modal {
   --background: #000000;
-}
-
-.stats-modal .modal-wrapper {
-  border-radius: 16px;
-  overflow: hidden;
 }
 
 .stats-modal-header {
@@ -1178,7 +685,6 @@ ion-menu.custom-menu .menu-inner {
   font-size: 18px;
   font-weight: 600;
   color: white;
-  padding: 0px 16px;
 }
 
 .stats-modal-content {
@@ -1206,13 +712,8 @@ ion-menu.custom-menu .menu-inner {
   flex: 1;
 }
 
-.home-team {
-  justify-content: flex-start;
-}
-
-.away-team {
-  justify-content: flex-end;
-}
+.home-team { justify-content: flex-start; }
+.away-team { justify-content: flex-end; }
 
 .team-logo-large {
   width: 50px;
@@ -1286,55 +787,45 @@ ion-menu.custom-menu .menu-inner {
   text-align: center;
 }
 
-.stats-values {
+.stats-values-row {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
 }
 
-.home-value {
+.stats-value {
   font-size: 14px;
-  font-weight: bold;
-  color: #3b82f6;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: center;
 }
 
-.away-value {
-  font-size: 14px;
-  font-weight: bold;
-  color: #ef4444;
+.stats-value.home-value { color: #3b82f6; }
+.stats-value.away-value { color: #ef4444; }
+
+.stats-bar-wrapper {
+  flex: 1;
 }
 
 .stats-bar-container {
   display: flex;
-  height: 32px;
-  border-radius: 8px;
+  height: 8px;
+  border-radius: 4px;
   overflow: hidden;
-  background: #374151;
-  width: 100%;
+  background-color: #374151;
 }
 
 .stats-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
   transition: width 0.3s ease;
-  min-width: 40px;
 }
 
 .home-stats-bar {
-  background: #3b82f6;
+  background-color: #3b82f6;
 }
 
 .away-stats-bar {
-  background: #ef4444;
-}
-
-.stats-percent {
-  font-size: 11px;
-  font-weight: bold;
+  background-color: #ef4444;
 }
 
 .stats-legend {
@@ -1360,226 +851,373 @@ ion-menu.custom-menu .menu-inner {
   border-radius: 3px;
 }
 
-.home-legend {
-  background: #3b82f6;
-}
-
-.away-legend {
-  background: #ef4444;
-}
+.home-legend { background-color: #3b82f6; }
+.away-legend { background-color: #ef4444; }
 
 /* -------------------- */
-/* ANIMASYONLAR */
+/* SETTINGS SAYFASI STILLERI */
 /* -------------------- */
 
-@keyframes pulse {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+.settings-page {
+  --background: #000000 !important;
+  background: #000000 !important;
 }
 
-/* -------------------- */
-/* RESPONSIVE */
-/* -------------------- */
-
-@media (max-width: 480px) {
-  .filter-value-box {
-    width: 90px;
-    min-height: 70px;
-  }
-  
-  .filter-value-item {
-    font-size: 8px;
-  }
-  
-  .stats-hover-card {
-    width: 280px;
-    right: -10px;
-  }
-  
-  .stat-label {
-    width: 70px;
-    font-size: 9px;
-  }
-  
-  .team-name {
-    font-size: 10px;
-  }
-  
-  .team-logo-large {
-    width: 40px;
-    height: 40px;
-    font-size: 12px;
-  }
-  
-  .team-name-large {
-    font-size: 11px;
-  }
-  
-  .team-score-large {
-    font-size: 18px;
-  }
-  
-  .stats-vs {
-    font-size: 12px;
-    padding: 0 8px;
-  }
-  
-  .login-logo {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .login-logo-text {
-    font-size: 40px;
-  }
-  
-  .login-title {
-    font-size: 22px;
-  }
+.settings-header {
+  --background: #000000 !important;
+  background: #000000 !important;
+  --color: white !important;
+  border-bottom: 1px solid #1f2937;
 }
 
-@media (min-width: 768px) {
-  .filter-value-box {
-    width: 130px;
-  }
-  
-  .login-card {
-    margin: 32px;
-    border-radius: 20px;
-  }
-  
-  .login-logo {
-    width: 90px;
-    height: 90px;
-  }
-  
-  .login-logo-text {
-    font-size: 54px;
-  }
-  
-  .login-title {
-    font-size: 28px;
-  }
+.settings-header ion-title {
+  color: white !important;
 }
 
-/* GOL Animasyonu */
-.goal-animation-container {
-  width: 100%;
-  height: 100%;
+.settings-content {
+  --background: #000000 !important;
+  background: #000000 !important;
+}
+
+.settings-card {
+  background: #1f2937 !important;
+  border-radius: 12px;
+  margin: 0 16px 12px 16px;
+  box-shadow: none;
+}
+
+.settings-card ion-card-content {
+  padding: 16px;
+}
+
+.profile-section {
   display: flex;
   align-items: center;
-  justify-content: center;
-  animation: goalPulse 0.5s ease-in-out infinite alternate;
+  gap: 16px;
 }
 
-.goal-text {
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #22c55e;
+}
+
+.profile-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white !important;
+}
+
+.profile-info p {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #9ca3af !important;
+}
+
+.profile-role {
+  font-size: 11px;
+  color: #22c55e !important;
+}
+
+.settings-section-title {
+  margin: 0 0 12px 0;
   font-size: 14px;
-  font-weight: bold;
-  color: #ef4444;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  animation: goalShake 0.3s ease-in-out infinite;
+  font-weight: 600;
+  color: #22c55e !important;
 }
 
-/* Yanıp sönen çizgiler (çapraz animasyon) */
-.filter-value-box.goal-animation {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(239, 68, 68, 0.3),
-    transparent
-  );
-  animation: crossShine 1s linear infinite;
-}
-
-.filter-value-box.goal-animation::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(239, 68, 68, 0.5),
-    transparent
-  );
-  animation: crossMove 1.5s ease-in-out infinite;
-}
-
-@keyframes goalPulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-@keyframes goalShake {
-  0% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-2px);
-  }
-  75% {
-    transform: translateX(2px);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-@keyframes crossShine {
-  0% {
-    background-position: -100% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-@keyframes crossMove {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* ============================================ */
-/* CANLI SAAT STILI */
-/* ============================================ */
-
-/* ============================================ */
-/* LIVE BUTONU VE SAAT - AYNI SATIR */
-/* ============================================ */
-
-.live-row {
+.settings-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
-  gap: 12px;
+  margin-bottom: 12px;
 }
 
-/* Live Button */
-.live-button {
+.settings-item {
+  --background: transparent !important;
+  --color: white !important;
+  --padding-start: 0;
+  --padding-end: 0;
+  margin-bottom: 12px;
+}
+
+.settings-item ion-icon {
+  color: #22c55e !important;
+  font-size: 20px;
+  margin-right: 12px;
+}
+
+.settings-item ion-label {
+  font-size: 14px;
+  color: white !important;
+}
+
+.settings-item ion-toggle {
+  --track-background: #374151;
+  --track-background-checked: #22c55e;
+}
+
+.user-list {
+  background: transparent !important;
+}
+
+.user-item {
+  --background: #374151 !important;
+  --border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 4px 12px;
+}
+
+.user-avatar-small {
+  width: 40px;
+  height: 40px;
+}
+
+.user-item h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: white !important;
+  margin: 0;
+}
+
+.user-item p {
+  font-size: 11px;
+  color: #9ca3af !important;
+  margin: 2px 0;
+}
+
+.user-email {
+  font-size: 10px;
+  color: #6b7280 !important;
+}
+
+.logout-section {
+  padding: 0 16px 16px 16px;
+}
+
+.logout-button {
+  --border-color: #ef4444;
+  --color: #ef4444;
+  --border-radius: 12px;
+  margin: 0;
+  height: 48px;
+}
+
+.save-section {
+  padding: 0 16px 32px 16px;
+}
+
+.save-button {
+  --background: #22c55e;
+  --background-hover: #16a34a;
+  --border-radius: 12px;
+  margin: 0;
+  height: 48px;
+}
+
+/* -------------------- */
+/* STATS SAYFASI STILLERI */
+/* -------------------- */
+
+.stats-page {
+  --background: #000000 !important;
+  background: #000000 !important;
+}
+
+.stats-header {
+  --background: #000000 !important;
+  background: #000000 !important;
+  --color: white !important;
+  border-bottom: 1px solid #1f2937;
+}
+
+.stats-header ion-title {
+  color: white !important;
+}
+
+.stats-content {
+  --background: #000000 !important;
+  background: #000000 !important;
+}
+
+.stats-card {
+  background: #1f2937 !important;
+  border-radius: 12px;
+  margin: 0 16px 12px 16px;
+  box-shadow: none;
+  border: none;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: white !important;
+}
+
+.filter-title ion-icon {
+  font-size: 20px;
+  color: #22c55e !important;
+}
+
+.filter-title ion-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: white !important;
+  margin: 0;
+}
+
+.filter-range {
+  --knob-background: #22c55e;
+  --knob-size: 22px;
+  --bar-height: 8px;
+  --bar-background: #374151;
+  --bar-background-active: #22c55e;
+  padding: 12px 0;
+}
+
+.filter-range::part(track) {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.filter-range::part(track-active) {
+  background: #22c55e;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.filter-range::part(knob) {
+  width: 22px;
+  height: 22px;
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+}
+
+.range-min,
+.range-max {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  background: #1f2937;
+  padding: 4px 12px;
+  border-radius: 20px;
+  min-width: 50px;
+  text-align: center;
+}
+
+.current-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: #2d3748;
+  border-radius: 12px;
+  border-left: 3px solid #22c55e;
+}
+
+.current-value-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9ca3af !important;
+}
+
+.current-value-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #22c55e !important;
+  background: #1f2937;
+  padding: 4px 16px;
+  border-radius: 24px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.half-segment {
+  --background: #374151;
+  --indicator-color: #22c55e;
+  border-radius: 8px;
+}
+
+.half-segment ion-segment-button {
+  --color: #9ca3af;
+  --color-checked: white;
+  --indicator-color: #22c55e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sound-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.sound-chip {
+  --background: #374151;
+  --color: #9ca3af;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 24px;
+}
+
+.sound-chip[color="success"] {
+  --background: #22c55e;
+  --color: white;
+}
+
+.sound-chip[color="danger"] {
+  --background: #ef4444;
+  --color: white;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 32px 16px;
+  margin: 0;
+}
+
+.reset-button {
+  --border-color: #4b5563;
+  --color: #9ca3af;
+  --border-radius: 12px;
+  margin: 0;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.apply-button {
+  --background: #22c55e;
+  --background-hover: #16a34a;
+  --color: white;
+  --border-radius: 12px;
+  margin: 0;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* -------------------- */
+/* FILTER ROW - CANLI VE TAKIP BUTONLARI */
+/* -------------------- */
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+}
+
+.filter-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1593,13 +1231,13 @@ ion-menu.custom-menu .menu-inner {
   flex-shrink: 0;
 }
 
-.live-button-text {
+.filter-button-text {
   font-size: 14px;
   font-weight: 600;
   color: #9ca3af;
 }
 
-.live-badge {
+.filter-badge {
   --background: #ef4444;
   --color: white;
   font-size: 12px;
@@ -1608,245 +1246,243 @@ ion-menu.custom-menu .menu-inner {
   border-radius: 20px;
 }
 
-.live-button.active {
+.filter-button.live-button.active {
   background: #22c55e;
 }
 
-.live-button.active .live-button-text {
+.filter-button.live-button.active .filter-button-text {
   color: white;
 }
 
-.live-button.active .live-badge {
+.filter-button.live-button.active .filter-badge {
   --background: white;
   --color: #ef4444;
 }
 
-.live-button:hover {
+.filter-button.tracked-button.active {
+  background: #eab308;
+}
+
+.filter-button.tracked-button.active .filter-button-text {
+  color: white;
+}
+
+.filter-button.tracked-button.active .filter-badge {
+  --background: white;
+  --color: #eab308;
+}
+
+.filter-button:hover {
   background: #374151;
 }
 
-.live-button.active:hover {
+.filter-button.live-button.active:hover {
   background: #16a34a;
 }
 
-/* Canlı Saat */
-.live-clock {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #1f2937;
-  padding: 6px 12px;
-  border-radius: 24px;
-  border: 1px solid #374151;
-  flex-shrink: 0;
+.filter-button.tracked-button.active:hover {
+  background: #ca8a04;
 }
 
-.live-clock-icon {
-  font-size: 14px;
-  animation: pulse 1.5s infinite;
+/* -------------------- */
+/* MENU STILLERI */
+/* -------------------- */
+
+.custom-menu {
+  --background: #000000 !important;
+  --width: 240px !important;
 }
 
-.live-clock-time {
-  font-size: 14px;
-  font-weight: 600;
-  color: #22c55e;
-  font-family: monospace;
-  letter-spacing: 1px;
+.split-pane-visible > .split-pane-side {
+  min-width: 240px !important;
+  max-width: 240px !important;
+  background: #000000 !important;
+  border-right: 1px solid #1f2937 !important;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .live-row {
-    padding: 8px 12px;
-  }
-  
-  .live-button {
-    padding: 6px 16px;
-  }
-  
-  .live-button-text {
-    font-size: 13px;
-  }
-  
-  .live-clock {
-    padding: 4px 10px;
-  }
-  
-  .live-clock-icon {
-    font-size: 12px;
-  }
-  
-  .live-clock-time {
-    font-size: 12px;
-  }
+ion-menu.custom-menu .menu-inner {
+  width: 240px !important;
+  background: #000000 !important;
 }
 
-.green-active-box {
-  width: 100%;
-  height: 100%;
-  min-height: 60px;
-  background: #22c55e;
-  border-radius: 8px;
+.menu-header {
+  --background: #000000 !important;
+  background: #000000 !important;
+  border-bottom: 1px solid #1f2937;
 }
 
-/* Stats Error Box */
-.filter-value-box.stats-error {
-  background: linear-gradient(135deg, #2d1f1f 0%, #1a1a1a 100%);
-  border: 1px solid #ff4444;
-  box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
-  animation: errorPulse 1s ease-in-out infinite;
-}
-
-.stats-error-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-.stats-error-icon {
-  font-size: 18px;
-  animation: shake 0.5s ease-in-out infinite;
-}
-
-.stats-error-text {
-  font-size: 10px;
-  font-weight: bold;
-  color: #ff6666;
-}
-
-.stats-error-subtext {
-  font-size: 8px;
-  color: #ff9999;
-  animation: fadeInOut 2s ease-in-out infinite;
-}
-
-@keyframes errorPulse {
-  0%, 100% {
-    border-color: #ff4444;
-    box-shadow: 0 0 5px rgba(255, 68, 68, 0.3);
-  }
-  50% {
-    border-color: #ff8888;
-    box-shadow: 0 0 15px rgba(255, 68, 68, 0.6);
-  }
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  75% { transform: translateX(2px); }
-}
-
-@keyframes fadeInOut {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-/* Bekleme modu */
-.filter-value-box.waiting {
-  background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2a 100%);
-  border: 1px solid #ffc107;
-  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
-  animation: waitingPulse 1.5s ease-in-out infinite;
-}
-
-.waiting-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  width: 100%;
-  height: 100%;
-}
-
-.waiting-spinner {
-  font-size: 20px;
-  animation: spin 1s linear infinite;
-}
-
-.waiting-text {
-  font-size: 10px;
-  font-weight: bold;
-  color: #ffc107;
-}
-
-@keyframes waitingPulse {
-  0%, 100% {
-    border-color: #ffc107;
-    box-shadow: 0 0 5px rgba(255, 193, 7, 0.3);
-  }
-  50% {
-    border-color: #ffdf7e;
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.6);
-  }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Yeni stiller */
-.stats-values-row {
+.menu-header-content {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 20px 16px;
+}
+
+.menu-avatar {
+  width: 56px;
+  height: 56px;
+  border: 2px solid #22c55e;
+}
+
+.menu-user-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.menu-user-info p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.menu-content {
+  --background: #000000 !important;
+  background: #000000 !important;
+}
+
+.menu-list {
+  background: transparent !important;
+  padding: 8px 0;
+}
+
+.menu-item {
+  --background: transparent !important;
+  --color: #9ca3af !important;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 12px;
+  --padding-bottom: 12px;
+  --min-height: 48px;
+}
+
+.menu-icon {
+  color: #9ca3af !important;
+  font-size: 22px;
+  margin-right: 12px;
+}
+
+.menu-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af !important;
+}
+
+.menu-item[aria-current="page"] {
+  --background: #1f2937 !important;
+  border-left: 3px solid #22c55e;
+}
+
+.menu-item[aria-current="page"] .menu-icon {
+  color: #22c55e !important;
+}
+
+.menu-item[aria-current="page"] .menu-label {
+  color: white !important;
+}
+
+.menu-divider {
+  height: 1px;
+  background: #1f2937;
+  margin: 12px 16px;
+}
+
+.logout-item {
   margin-top: 8px;
 }
 
-.stats-value {
-  font-size: 14px;
-  font-weight: 600;
-  min-width: 40px;
+.logout-icon {
+  color: #ef4444 !important;
+}
+
+.logout-label {
+  color: #ef4444 !important;
+}
+
+.menu-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
   text-align: center;
 }
 
-.stats-value.home-value {
-  color: var(--home-color, #3b82f6);
+.menu-version {
+  font-size: 11px;
+  color: #4b5563;
 }
 
-.stats-value.away-value {
-  color: var(--away-color, #ef4444);
+/* -------------------- */
+/* SPLIT PANE & RESPONSIVE */
+/* -------------------- */
+
+ion-split-pane {
+  --background: #000000 !important;
+  --side-width: 240px;
+  --side-max-width: 240px;
 }
 
-.stats-bar-wrapper {
-  flex: 1;
+.split-pane-main {
+  background: #000000 !important;
 }
 
-.stats-bar-container {
-  display: flex;
-  height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #e5e7eb;
+ion-router-outlet {
+  background: #000000 !important;
 }
 
-.home-stats-bar {
-  background-color: #3b82f6;
-  transition: width 0.3s ease;
+@media (min-width: 992px) {
+  .split-pane-visible > .split-pane-side {
+    display: block !important;
+    position: relative !important;
+    left: 0 !important;
+  }
+  
+  ion-menu-button {
+    display: none !important;
+  }
 }
 
-.away-stats-bar {
-  background-color: #ef4444;
-  transition: width 0.3s ease;
+@media (max-width: 991px) {
+  .split-pane-visible > .split-pane-side {
+    display: none !important;
+  }
+  
+  ion-menu-button {
+    display: inline-block !important;
+  }
 }
 
-/* Eski yüzde gösterimini kaldır */
-.stats-percent {
-  display: none;
+/* -------------------- */
+/* ANIMASYONLAR */
+/* -------------------- */
+
+@keyframes pulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-/* Legend renkleri */
-.home-legend {
-  background-color: #3b82f6;
-}
+/* -------------------- */
+/* RESPONSIVE */
+/* -------------------- */
 
-.away-legend {
-  background-color: #ef4444;
+@media (max-width: 480px) {
+  .filter-value-box { width: 90px; min-height: 70px; }
+  .team-name { font-size: 12px; }
+  .team-logo { width: 30px; height: 30px; font-size: 10px; }
+  .team-logo-img { width: 28px; height: 28px; }
+  .team-score { font-size: 14px; }
+  .league-name { font-size: 12px; }
+  .league-odds span { font-size: 11px; padding: 2px 6px; }
+  .live-button { padding: 6px 16px; }
+  .live-clock { padding: 4px 10px; }
+  .live-clock-time { font-size: 12px; }
+  .team-logo-large { width: 40px; height: 40px; font-size: 12px; }
+  .team-name-large { font-size: 11px; }
+  .team-score-large { font-size: 18px; }
+  .filter-row { padding: 8px 12px; gap: 8px; }
+  .filter-button { padding: 6px 16px; }
+  .filter-button-text { font-size: 13px; }
+  .filter-badge { font-size: 11px; padding: 3px 6px; }
 }

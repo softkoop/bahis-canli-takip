@@ -59,18 +59,6 @@ export class LiveUpdateGateway
 
   async handleConnection(client: Socket) {
     this.logger.log(`Client connected: ${client.id}`);
-
-    // try {
-    //   const liveMatches = await this.matchDomainService.getLiveMatches();
-    //   const frontendMatches = this.frontendMapper.mapMatches(liveMatches);
-    //   client.emit('initial-live-matches', frontendMatches);
-    //   this.logger.log(
-    //     `Initial live matches sent: ${frontendMatches.length} matches`,
-    //   );
-    // } catch (error) {
-    //   this.logger.error(`Error sending initial live matches:`, error);
-    //   client.emit('error', { message: 'Failed to load live matches' });
-    // }
   }
 
   handleDisconnect(client: Socket) {

@@ -146,6 +146,31 @@ const doesAnyTeamPassAllFilters = (
   );
 };
 
+const doTeamsTogetherPassAllFilters = (
+  match: Match,
+  filters: FilterStats,
+): boolean => {
+  if (!match.stats) return false;
+
+  const totalStats = {
+    possession: match.stats.home.possession + match.stats.away.possession,
+    shots: match.stats.home.shots + match.stats.away.shots,
+    accurateShots:
+      match.stats.home.accurateShots + match.stats.away.accurateShots,
+    dangerousAttacks:
+      match.stats.home.dangerousAttacks + match.stats.away.dangerousAttacks,
+    corners: match.stats.home.corners + match.stats.away.corners,
+  };
+
+  return (
+    totalStats.possession >= filters.totalPlay &&
+    totalStats.shots >= filters.totalShot &&
+    totalStats.accurateShots >= filters.accurateShot &&
+    totalStats.dangerousAttacks >= filters.dangerousAttack &&
+    totalStats.corners >= filters.totalCorner
+  );
+};
+
 // goalScored parametresi ile yeşil ışık hesaplama
 const calculateGreenState = (
   match: Match,
@@ -189,101 +214,80 @@ const calculateGreenState = (
     };
   }
 
-  // Gol olduktan sonra yeşil bir daha yanmasın
-  if (previousState.goalScoredAfterGreen) {
+  // 🔥 GOL KONTROLÜ: Gol olduysa veya daha önce olduysa yeşil asla yanmaz
+  const hasGoalOccurred = previousState.goalScoredAfterGreen || goalScored;
+
+  if (hasGoalOccurred) {
     return {
       isGreenActive: false,
-      showGoalAnimation: previousState.showGoalAnimation,
+      showGoalAnimation: previousState.showGoalAnimation || goalScored,
       greenActivatedAtMinute: previousState.greenActivatedAtMinute,
       goalScoredAfterGreen: true,
-      activeHalf: previousState.activeHalf,
+      activeHalf:
+        previousState.activeHalf || (isFirstHalf ? "first" : "second"),
     };
   }
 
+  // 🔥 DAKİKA FİLTRESİ YOK! Sadece yarı bazında filtre seç
   const currentFilters = isFirstHalf ? firstHalfFilters : secondHalfFilters;
   const currentHalf = isFirstHalf ? "first" : "second";
-  const filterMinute = currentFilters.duration;
 
-  console.log(`🔍 MAÇ ${match.id}:`, {
-    currentMinute,
-    isFirstHalf,
-    isSecondHalf,
-    filterMinute,
-    selectedFilters: isFirstHalf ? "FIRST_HALF" : "SECOND_HALF",
-    firstHalfDuration: firstHalfFilters.duration,
-    secondHalfDuration: secondHalfFilters.duration,
-  });
-
-  // 🔥 YENİ: Filtre penceresi - yarının başından filterMinute'a kadar
-  // 1. Yarı için: 0-45 arası, filterMinute'a kadar
-  // 2. Yarı için: 46-90 arası, filterMinute'a kadar
-  let isInFilterWindow = false;
-
-  if (isFirstHalf) {
-    // 1. Yarı: 0. dakikadan filterMinute'a kadar kontrol et
-    // filterMinute 1-45 arası bir değer
-    isInFilterWindow = currentMinute <= filterMinute;
-  } else if (isSecondHalf) {
-    // 2. Yarı: 46. dakikadan filterMinute'a kadar kontrol et
-    // filterMinute 46-90 arası bir değer
-    isInFilterWindow = currentMinute <= filterMinute;
-  }
-
-  const goalMinute = match.minute || 0;
-
-  // Gol filtre dakikasından ÖNCE veya EŞİT olduysa yeşil asla yanmasın
-  const goalBeforeOrAtFilter =
-    goalScored && goalMinute > 0 && goalMinute <= filterMinute;
-  if (goalBeforeOrAtFilter) {
-    return {
-      isGreenActive: false,
-      showGoalAnimation: false,
-      greenActivatedAtMinute: 0,
-      goalScoredAfterGreen: true,
-      activeHalf: currentHalf,
-    };
-  }
-
-  // Filtre penceresi geçtiyse (filterMinute'dan büyükse) artık kontrol etme
-  if (currentMinute > filterMinute) {
-    return {
-      isGreenActive: false,
-      showGoalAnimation: false,
-      greenActivatedAtMinute: 0,
-      goalScoredAfterGreen: previousState.goalScoredAfterGreen,
-      activeHalf: currentHalf,
-    };
-  }
-
-  // Yeşil zaten yanıyorsa
+  // 🔥 Yeşil zaten yanıyorsa aynen devam et
   if (previousState.isGreenActive) {
-    if (goalScored && !previousState.goalScoredAfterGreen) {
-      return {
-        isGreenActive: false,
-        showGoalAnimation: true,
-        greenActivatedAtMinute: previousState.greenActivatedAtMinute,
-        goalScoredAfterGreen: true,
-        activeHalf: currentHalf,
-      };
-    }
     return previousState;
   }
 
-  // Yeşil yanmıyorsa ve filtre penceresindeysek kontrol et
-  if (isInFilterWindow) {
-    const oneTeamPasses = doesAnyTeamPassAllFilters(match, currentFilters);
-    if (oneTeamPasses) {
-      return {
-        isGreenActive: true,
-        showGoalAnimation: false,
-        greenActivatedAtMinute: currentMinute,
-        goalScoredAfterGreen: false,
-        activeHalf: currentHalf,
-      };
-    }
+  // 🔥 YENİ KONTROL: Takımların toplam istatistikleri filtreleri geçiyor mu?
+  const teamsTogetherPass = doTeamsTogetherPassAllFilters(
+    match,
+    currentFilters,
+  );
+
+  if (teamsTogetherPass) {
+    return {
+      isGreenActive: true,
+      showGoalAnimation: false,
+      greenActivatedAtMinute: currentMinute,
+      goalScoredAfterGreen: false,
+      activeHalf: currentHalf,
+    };
   }
 
   return previousState;
+};
+
+// ============ SIRALAMA FONKSİYONLARI ============
+
+const sortMatchesByLiveAndTime = (matches: Match[]): Match[] => {
+  return [...matches].sort((a, b) => {
+    // Canlı maçlar her zaman üstte
+    if (a.isLive !== b.isLive) {
+      return a.isLive ? -1 : 1;
+    }
+
+    // İKİSİ DE CANLIYSA: dakikaya göre sırala (küçük dakika üstte = yeni başlayan)
+    if (a.isLive && b.isLive) {
+      const aMinute = a.minute || 0;
+      const bMinute = b.minute || 0;
+      // Yeni başlayan (dakikası küçük olan) üstte
+      if (aMinute !== bMinute) {
+        return aMinute - bMinute; // Küçük dakika önce
+      }
+    }
+
+    // İkisi de canlı değilse veya dakikalar eşitse saatine göre sırala
+    if (a.time > b.time) return -1;
+    if (a.time < b.time) return 1;
+    return 0;
+  });
+};
+
+// Gruplanmış maçları sırala
+const sortGroupedMatches = (groups: LeagueGroup[]): LeagueGroup[] => {
+  return groups.map((group) => ({
+    ...group,
+    matches: sortMatchesByLiveAndTime(group.matches),
+  }));
 };
 
 const MatchContext = createContext<MatchContextType | undefined>(undefined);
@@ -331,28 +335,36 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // ============ GÜNCELLEME (Sadece minute, score, stats) ============
   const updateMatches = useCallback((updatedMatches: Match[]) => {
-    setGroupedMatches((prev) =>
-      prev.map((group) => ({
-        ...group,
-        matches: group.matches.map((existing) => {
-          const updated = updatedMatches.find((u) => u.id === existing.id);
-          if (!updated) return existing;
+    setGroupedMatches((prev) => {
+      // Önce grupları güncelle
+      const updated = prev.map((group) => {
+        const newMatches = group.matches.map((existing) => {
+          const updatedMatch = updatedMatches.find((u) => u.id === existing.id);
+          if (!updatedMatch) return existing;
 
           return {
             ...existing,
-            ...updated,
+            ...updatedMatch,
             homeTeam: existing.homeTeam,
             awayTeam: existing.awayTeam,
-            stats: updated.stats
-              ? { ...existing.stats, ...updated.stats }
+            stats: updatedMatch.stats
+              ? { ...existing.stats, ...updatedMatch.stats }
               : existing.stats,
           } as Match;
-        }),
-      })),
-    );
+        });
+
+        // ✅ Her güncellemede grubun içindeki maçları yeniden sırala
+        return {
+          ...group,
+          matches: sortMatchesByLiveAndTime(newMatches),
+        };
+      });
+
+      return updated;
+    });
   }, []);
 
-  // ============ REFRESH (Yeni maçlar veya biten maçlar) ============
+  // refreshLiveMatches fonksiyonunu da güncelle
   const refreshLiveMatches = useCallback(async () => {
     try {
       console.log("🔄 Canlı maçlar yenileniyor...");
@@ -363,16 +375,21 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
         const liveGroup = {
           league: "🔴 CANLI MAÇLAR",
           flag: "⚽",
-          matches: freshLiveMatches,
+          matches: sortMatchesByLiveAndTime(freshLiveMatches), // ✅ Sırala
         };
 
         const hasLiveGroup = prev.some((g) => g.league === "🔴 CANLI MAÇLAR");
+        let newGroups;
         if (hasLiveGroup) {
-          return prev.map((g) =>
+          newGroups = prev.map((g) =>
             g.league === "🔴 CANLI MAÇLAR" ? liveGroup : g,
           );
+        } else {
+          newGroups = [liveGroup, ...prev];
         }
-        return [liveGroup, ...prev];
+
+        // ✅ Tüm grupları yeniden sırala
+        return sortGroupedMatches(newGroups);
       });
 
       console.log(`✅ ${freshLiveMatches.length} canlı maç yüklendi`);
@@ -409,7 +426,8 @@ export const MatchProvider: React.FC<{ children: React.ReactNode }> = ({
         finalGrouped = [liveGroup, ...grouped];
       }
 
-      setGroupedMatches(finalGrouped);
+      // Tüm gruplardaki maçları sırala
+      setGroupedMatches(sortGroupedMatches(finalGrouped));
       setError(null);
     } catch (err) {
       setError("Veriler yüklenirken bir hata oluştu");

@@ -13,6 +13,7 @@ import {
 import { calendarOutline, starOutline } from "ionicons/icons";
 import { useMatches } from "../context/MatchContext";
 import MatchStatsModal from "../components/MatchStatsModal";
+import { getCountryInfo } from "../utils/countries";
 
 // Takım logo renkleri
 const teamColors: Record<string, string> = {
@@ -36,16 +37,6 @@ const teamColors: Record<string, string> = {
   BAY: "#ef4444",
   PSG: "#ef4444",
 };
-
-// const TeamLogo: React.FC<{ team: string }> = ({ team }) => {
-//   const color = teamColors[team] || "#6b7280";
-//   return (
-//     <div className="team-logo" style={{ backgroundColor: color }}>
-//       {team.slice(0, 2)}
-//     </div>
-//   );
-// };
-// MatchCard.tsx
 
 const TeamLogo: React.FC<{ team: any }> = ({ team }) => {
   const [imageError, setImageError] = useState(false);
@@ -111,172 +102,6 @@ const LiveClock: React.FC = () => {
   );
 };
 
-// const MatchCard: React.FC<{ match: any }> = ({ match }) => {
-//   const {
-//     getMatchGreenState,
-//     getMatchingFilterItems,
-//     firstHalfFilters,
-//     secondHalfFilters,
-//     trackedMatchIds, // ← Takip edilen maç ID'leri
-//     toggleTrackMatch,
-//   } = useMatches();
-//   const [showModal, setShowModal] = useState(false);
-
-//   const greenState = getMatchGreenState(match.id);
-//   const matchingItems = getMatchingFilterItems(match);
-
-//   const currentMinute = match.stats?.matchDuration || 0;
-//   const isFirstHalf = currentMinute <= 45;
-//   const currentFilters = isFirstHalf ? firstHalfFilters : secondHalfFilters;
-
-//   const isTracked = trackedMatchIds.includes(match.id); // ← Yıldız aktif mi?
-
-//   const hasActiveFilters =
-//     currentFilters.totalPlay !== 50 ||
-//     currentFilters.totalShot !== 1 ||
-//     currentFilters.accurateShot !== 1 ||
-//     currentFilters.dangerousAttack !== 1 ||
-//     currentFilters.totalCorner !== 1 ||
-//     currentFilters.duration !== 1;
-
-//   const getFilterBoxContent = () => {
-//     if (!match.isLive) {
-//       return (
-//         <div className="empty-box">
-//           <span>Maç başlamadı</span>
-//         </div>
-//       );
-//     }
-
-//     if (!hasActiveFilters) {
-//       return (
-//         <div className="empty-box">
-//           <span>Filtre seçiniz</span>
-//         </div>
-//       );
-//     }
-
-//     if (greenState.showGoalAnimation) {
-//       return (
-//         <div className="goal-animation-container">
-//           <span className="goal-text">⚽ GOL ⚽</span>
-//         </div>
-//       );
-//     }
-
-//     if (greenState.isGreenActive) {
-//       return <div className="green-active-box"></div>;
-//     }
-
-//     return (
-//       <div className="empty-box">
-//         <span>Filtre değerleri tutmuyor</span>
-//       </div>
-//     );
-//   };
-
-//   const getBoxClassName = () => {
-//     if (!match.isLive || !hasActiveFilters) return "filter-value-box";
-//     if (greenState.showGoalAnimation) return "filter-value-box goal-animation";
-//     if (greenState.isGreenActive) return "filter-value-box active";
-//     return "filter-value-box";
-//   };
-
-//   return (
-//     <>
-//       <div
-//         className="match-card-wrapper"
-//         onClick={() => match.isLive && match.stats && setShowModal(true)}
-//         style={{ cursor: match.isLive && match.stats ? "pointer" : "default" }}
-//       >
-//         {match.league && (
-//           <div className="league-header">
-//             <div className="league-info">
-//               <IonIcon icon={starOutline} className="star-icon" />
-//               <span className="league-flag">{match.flag}</span>
-//               <span className="league-name">{match.league}</span>
-//             </div>
-//             <div className="league-odds">
-//               <span>{match.odds["1"]}</span>
-//               <span>{match.odds.X}</span>
-//               <span>{match.odds["2"]}</span>
-//             </div>
-//           </div>
-//         )}
-
-//         <div className={`match-card ${match.league ? "with-league" : ""}`}>
-//           <div className="time-column">
-//             {match.isLive && (
-//               <>
-//                 <IonIcon
-//                   icon={starOutline}
-//                   className={`star-icon ${isTracked ? "active" : ""}`}
-//                   onClick={(e) => {
-//                     e.stopPropagation(); // Kartın tıklanmasını engelle
-//                     toggleTrackMatch(match.id);
-//                   }}
-//                   style={{
-//                     color: isTracked ? "#ffc107" : "#6c757d",
-//                     cursor: "pointer",
-//                     fontSize: "20px",
-//                   }}
-//                 />
-//                 <div className="live-dot"></div>
-//                 <div className="live-minute">{match.minute || 45}'</div>
-//               </>
-//             )}
-//             {!match.isLive && (
-//               <>
-//                 <span className="match-time">{match.time}</span>
-//               </>
-//             )}
-//           </div>
-
-//           <div className="teams-column">
-//             {match.homeTeam.name && (
-//               <div className="team-row">
-//                 <TeamLogo team={match.homeTeam} />
-//                 <span className="team-name">
-//                   {match.homeTeam.shortName || match.homeTeam.name}
-//                 </span>
-//                 {match.score && (
-//                   <span className="team-score">{match.score.home}</span>
-//                 )}
-//               </div>
-//             )}
-//             {match.awayTeam.name && (
-//               <div className="team-row">
-//                 <TeamLogo team={match.awayTeam} />
-//                 <span className="team-name">
-//                   {match.awayTeam.shortName || match.awayTeam.name}
-//                 </span>
-//                 {match.score && (
-//                   <span className="team-score">{match.score.away}</span>
-//                 )}
-//               </div>
-//             )}
-//           </div>
-
-//           <div className={getBoxClassName()}>{getFilterBoxContent()}</div>
-//         </div>
-
-//         {match.league && (
-//           <div className="progress-bar">
-//             <div className="progress-yellow"></div>
-//             <div className="progress-red"></div>
-//             <div className="progress-red"></div>
-//           </div>
-//         )}
-//       </div>
-
-//       <MatchStatsModal
-//         isOpen={showModal}
-//         onClose={() => setShowModal(false)}
-//         match={match}
-//       />
-//     </>
-//   );
-// };
 const MatchCard: React.FC<{ match: any }> = ({ match }) => {
   const {
     getMatchGreenState,
@@ -373,6 +198,8 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
     toggleTrackMatch(match.id);
   };
 
+  const countryInfo = match.flag ? getCountryInfo(match.flag) : null;
+
   return (
     <>
       <div
@@ -384,7 +211,9 @@ const MatchCard: React.FC<{ match: any }> = ({ match }) => {
           <div className="league-header">
             <div className="league-info">
               <IonIcon icon={starOutline} className="star-icon" />
-              <span className="league-flag">{match.flag}</span>
+              {countryInfo && (
+                <span className="league-flag">{countryInfo.flag}</span>
+              )}
               <span className="league-name">{match.league}</span>
             </div>
             <div className="league-odds">
@@ -460,9 +289,11 @@ const Home: React.FC = () => {
     selectedDate,
     setSelectedDate,
     dateList,
+    trackedMatchIds,
   } = useMatches();
 
   const [showOnlyLive, setShowOnlyLive] = useState(false);
+  const [showOnlyTracked, setShowOnlyTracked] = useState(false); // ← YENİ
 
   const handleRefresh = async (event: CustomEvent) => {
     await refreshMatches();
@@ -473,17 +304,51 @@ const Home: React.FC = () => {
     return total + group.matches.filter((m) => m.isLive).length;
   }, 0);
 
-  const displayMatches = showOnlyLive
-    ? groupedMatches
+  const trackedCount = groupedMatches.reduce((total, group) => {
+    return (
+      total + group.matches.filter((m) => trackedMatchIds.includes(m.id)).length
+    );
+  }, 0);
+
+  const getFilteredMatches = () => {
+    if (showOnlyLive && showOnlyTracked) {
+      // Hem canlı hem takip edilen
+      return groupedMatches
+        .map((group) => ({
+          ...group,
+          matches: group.matches.filter(
+            (m) => m.isLive && trackedMatchIds.includes(m.id),
+          ),
+        }))
+        .filter((group) => group.matches.length > 0);
+    } else if (showOnlyLive) {
+      // Sadece canlı
+      return groupedMatches
         .map((group) => ({
           ...group,
           matches: group.matches.filter((m) => m.isLive),
         }))
-        .filter((group) => group.matches.length > 0)
-    : groupedMatches;
+        .filter((group) => group.matches.length > 0);
+    } else if (showOnlyTracked) {
+      // Sadece takip edilen
+      return groupedMatches
+        .map((group) => ({
+          ...group,
+          matches: group.matches.filter((m) => trackedMatchIds.includes(m.id)),
+        }))
+        .filter((group) => group.matches.length > 0);
+    }
+    return groupedMatches;
+  };
+
+  const displayMatches = getFilteredMatches();
 
   const toggleLiveFilter = () => {
     setShowOnlyLive(!showOnlyLive);
+  };
+
+  const toggleTrackedFilter = () => {
+    setShowOnlyTracked(!showOnlyTracked);
   };
 
   return (
@@ -501,9 +366,6 @@ const Home: React.FC = () => {
         </IonRefresher>
 
         <div className="date-selector">
-          <IonButton fill="clear" className="calendar-button">
-            <IonIcon icon={calendarOutline} />
-          </IonButton>
           <div className="dates-scroll">
             {dateList.map((d) => (
               <button
@@ -530,6 +392,15 @@ const Home: React.FC = () => {
             <span className="live-button-text">Canlı</span>
             <IonBadge className="live-badge" color="danger">
               {liveCount}
+            </IonBadge>
+          </button>
+          <button
+            className={`filter-button tracked-button ${showOnlyTracked ? "active" : ""}`}
+            onClick={toggleTrackedFilter}
+          >
+            <span className="filter-button-text">Takip</span>
+            <IonBadge className="filter-badge" color="warning">
+              {trackedCount}
             </IonBadge>
           </button>
           <LiveClock />

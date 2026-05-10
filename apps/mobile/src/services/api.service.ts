@@ -59,7 +59,7 @@ export interface DateListResponse {
 }
 
 class ApiService {
-  private baseURL = "http://localhost:3001";
+  private baseURL = "http://18.197.62.151:3002";
   private socket: Socket | null = null;
   private updateCallbacks: ((matches: Match[]) => void)[] = [];
 
